@@ -1,0 +1,25 @@
+model MerchantLedgerEntry {
+  id String @id @default(uuid())
+
+  merchantId String
+  merchant   Merchant @relation(fields: [merchantId], references: [id])
+
+  parcelId String? @unique
+  parcel   Parcel?  @relation(fields: [parcelId], references: [id])
+
+  settlementId String?
+  settlement   Settlement? @relation(fields: [settlementId], references: [id])
+
+  amount Decimal         @db.Decimal(12, 2)
+  type   LedgerEntryType
+
+  createdAt DateTime @default(now())
+
+  @@index([merchantId])
+  @@map("merchant_ledger_entries")
+}
+
+enum LedgerEntryType {
+  CREDIT
+  DEBIT
+}

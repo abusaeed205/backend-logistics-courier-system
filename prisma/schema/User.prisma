@@ -1,0 +1,30 @@
+model User {
+  id           String     @id @default(uuid())
+  name         String
+  phone        String?     @unique
+  email        String      @unique
+  password      String?
+
+  image              String       @default("")
+  imagepublicId      String       @default("")
+
+  role         UserRole   @default(MERCHANT)
+  status       UserStatus @default(ACTIVE)
+
+  emailVerified      Boolean      @default(false)
+
+  needPasswordChange Boolean      @default(false)
+  isDeleted          Boolean      @default(false)
+  deletedAt          DateTime?
+  createdAt          DateTime     @default(now())
+  updatedAt          DateTime     @updatedAt
+
+  merchant    Merchant?
+  rider       Rider?
+  branchStaff BranchStaff?
+
+  scannedEvents TrackingEvent[] @relation("EventScannedBy")
+
+  @@index([role])
+  @@map("users")
+}

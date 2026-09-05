@@ -1,0 +1,21 @@
+model Union {
+  id        String  @id @default(uuid())
+  name      String
+
+  upazilaId String
+  upazila Upazila @relation(fields: [upazilaId], references: [id], onDelete: Restrict)
+
+  // Delivery Zones
+  zones DeliveryZone[] @relation("ZoneUnions")
+  branches          Branch[]
+  recipientParcels  Parcel[]       @relation("ParcelRecipientUnion")
+
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([name, upazilaId])
+  @@index([upazilaId])
+
+  @@map("unions")
+}

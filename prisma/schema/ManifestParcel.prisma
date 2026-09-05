@@ -1,0 +1,12 @@
+model ManifestParcel {
+  id         String   @id @default(uuid())
+  manifestId String
+  manifest   Manifest @relation(fields: [manifestId], references: [id], onDelete: Cascade)
+  parcelId   String
+  parcel     Parcel   @relation(fields: [parcelId], references: [id], onDelete: Cascade)
+  addedAt    DateTime @default(now())
+
+  @@unique([manifestId, parcelId])
+  @@index([parcelId])
+  @@map("manifest_parcels")
+}

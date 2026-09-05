@@ -1,0 +1,22 @@
+model Rider {
+  id String @id @default(uuid())
+
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id])
+
+  branchId String?
+  branch   Branch? @relation(fields: [branchId], references: [id])
+
+  zones DeliveryZone[] @relation("RiderZones")
+
+  pickupParcels   Parcel[] @relation("PickupRider")
+  deliveryParcels Parcel[] @relation("DeliveryRider")
+
+  payments Payments[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([branchId])
+  @@map("riders")
+}

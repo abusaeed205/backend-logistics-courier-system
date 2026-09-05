@@ -1,0 +1,20 @@
+model Payments {
+  id String @id @default(uuid())
+
+  parcelId String @unique
+  parcel   Parcel @relation(fields: [parcelId], references: [id])
+
+  branchId String
+  branch   Branch @relation(fields: [branchId], references: [id])
+
+riderId String
+rider   Rider @relation(fields: [riderId], references: [id])
+
+  amount Decimal @db.Decimal(10, 2)
+
+  createdAt DateTime @default(now())
+
+  @@index([branchId])
+  @@index([riderId])
+  @@map("payments")
+}

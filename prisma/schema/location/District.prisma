@@ -1,0 +1,19 @@
+model District {
+  id         String   @id @default(uuid())
+  name       String
+
+  divisionId String
+  division   Division @relation(fields: [divisionId], references: [id], onDelete: Restrict)
+
+  upazilas   Upazila[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  branches Branch[]
+
+  @@unique([name, divisionId])
+  @@index([divisionId])
+
+  @@map("districts")
+}

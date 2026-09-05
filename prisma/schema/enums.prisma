@@ -1,0 +1,139 @@
+// ============================================================================
+// ENUMS
+// ============================================================================
+
+enum UserRole {
+  ADMIN
+  MERCHANT
+  PICKUP_RIDER
+  DELIVERY_RIDER
+  BRANCH_AGENT
+  HUB_AGENT
+}
+
+
+enum UserStatus {
+  ACTIVE
+  SUSPENDED
+  PENDING_VERIFICATION
+  DELETED
+}
+
+enum BranchType {
+  BRANCH // local/last-mile branch
+  HUB // sorting/central hub
+}
+
+enum RiderType {
+  PICKUP
+  DELIVERY
+  BOTH
+}
+
+enum RiderAvailability {
+  AVAILABLE
+  ON_DUTY
+  OFFLINE
+}
+
+enum ParcelStatus {
+  PICKUP_REQUESTED
+  RIDER_ASSIGNED
+  PICKED_UP
+  RECEIVED_AT_ORIGIN_BRANCH
+  PROCESSING_AT_ORIGIN_HUB
+  READY_FOR_TRANSIT
+  IN_TRANSIT_TO_HUB
+  RECEIVED_AT_HUB
+  PROCESSING_FOR_DESTINATION_HUB
+  IN_TRANSIT_TO_DESTINATION_HUB
+  RECEIVED_AT_DESTINATION_HUB
+  IN_TRANSIT_TO_DELIVERY_BRANCH
+  RECEIVED_AT_DELIVERY_BRANCH
+  ASSIGNED_FOR_DELIVERY
+  OUT_FOR_DELIVERY
+  DELIVERED
+  DELIVERY_FAILED
+  RETURNED_TO_BRANCH
+  RETURN_INITIATED
+  RETURN_IN_TRANSIT
+  RETURNED_TO_MERCHANT
+  CANCELLED
+}
+
+enum ParcelType {
+  DOCUMENT
+  PARCEL
+  FRAGILE
+  HEAVY
+}
+
+enum PaymentType {
+  COD // cash on delivery
+  PREPAID
+}
+
+enum ManifestStatus {
+  OPEN // still being filled with parcels
+  CLOSED // sealed, ready for transit
+  IN_TRANSIT
+  RECEIVED
+}
+
+enum ManifestLegType {
+  PICKUP_TO_ORIGIN_BRANCH
+  BRANCH_TO_HUB
+  HUB_TO_HUB
+  HUB_TO_DELIVERY_BRANCH
+  RETURN
+}
+
+enum TrackingEventActorType {
+  RIDER
+  BRANCH_AGENT
+  HUB_AGENT
+  SYSTEM
+}
+
+enum CodCollectionStatus {
+  COLLECTED // rider has the cash
+  DEPOSITED // rider deposited cash at branch
+  RECONCILED // branch confirmed & matched with ledger
+}
+
+enum LedgerStatus {
+  PENDING
+  INCLUDED_IN_SETTLEMENT
+  SETTLED
+}
+
+enum SettlementMethod {
+  BANK
+  BKASH
+  NAGAD
+  ROCKET
+  CASH
+}
+
+enum CodPaymentMethod {
+  CASH
+  BKASH
+  NAGAD
+}
+
+enum SettlementStatus {
+  PENDING
+  PROCESSING
+  SETTLED
+  FAILED
+}
+
+enum DeliveryFailureReason {
+  CUSTOMER_UNREACHABLE
+  CUSTOMER_NOT_AVAILABLE
+  WRONG_ADDRESS
+  CUSTOMER_REFUSED
+  COD_NOT_READY
+  OTHER
+}
+

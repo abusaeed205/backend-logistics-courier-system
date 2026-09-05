@@ -1,0 +1,14 @@
+model Division {
+  id        String     @id @default(uuid())
+  name      String     @unique
+
+  districts District[]
+
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  branches Branch[]
+
+  @@map("divisions")
+}

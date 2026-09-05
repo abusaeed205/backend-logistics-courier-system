@@ -1,0 +1,20 @@
+model Merchant {
+    id  String @id @default(uuid())
+    userId String @unique
+    user User @relation(fields: [userId], references:[id],onDelete: Cascade)
+    businessName String
+    pickupAddress String
+    district String?
+    thana String?
+    balance Decimal @default(0) @db.Decimal(12, 2)
+    defaultDeliveryCharge Decimal? @db.Decimal(10, 2)
+    createdAt    DateTime @default(now())
+    updatedAt    DateTime @updatedAt
+
+    // relation  
+    parcels        Parcel[]
+    ledgerEntries  MerchantLedgerEntry[]
+    settlements    Settlement[]
+    @@map("merchants")
+
+}
