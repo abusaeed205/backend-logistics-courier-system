@@ -9,7 +9,7 @@ import config from "../../config"
 import path from "path"
 import ejs from 'ejs';
 import { UserStatus } from "../../../../prisma/generated/prisma/enums";
-import { IRegisterUser, IRequestUserProfile, IVerifyEmail } from "./auth.interface";
+import { Iforgetpassword, IRegisterUser, IRequestUserProfile, IResetPasswordPayload, IVerifyEmail } from "./auth.interface";
 import { jwtUtils } from "../../utils/jwt";
 import { JwtPayload, SignOptions } from "jsonwebtoken";
 
@@ -346,11 +346,162 @@ const refreshToken=async(token:string)=>{
 }
 
 
+const forgetpassword=async(payload:Iforgetpassword)=>{
+	const{email}=payload
+
+	const isUserExist=await prisma.user.findUnique({
+		where:{
+			email
+		}
+	})
+
+	if(!isUserExist){
+		throw new AppError(httpstatus.NOT_FOUND,"user Dose NOt Exist")
+	}
+
+	if(isUserExist.status==="SUSPENDED"){
+		throw new AppError(httpstatus.FORBIDDEN,"user is ‍Suspended")
+	}
+
+	if(isUserExist.emailVerified !== true){
+		throw new AppError(httpstatus.FORBIDDEN,"user is Not Verified")
+	}
+
+	if(isUserExist.isDeleted || isUserExist.status==="DELETED"){
+		throw new AppError(httpstatus.NOT_FOUND,"user is Deleted")
+	}
+
+	// crypto দিয়ে Random OTP বানিয়ে redis ডাটাবেইজে জমা করা হচ্ছে
+	const otp = crypto.randomInt(100000, 1000000).toString();
+	//  forgot-password-otp এই নাম reset-password এও থাকতে হবে নয় তো Error দিবে
+	const key = `forgot-password-otp:${isUserExist.email}`;
+
+	const expirationMinutes = 5 * 60; // টাইমটা বলেদিতেছে কতো মিনিট থাকবে
+
+	// redisclient lib foulder থেকে আসতেছে এবং OTP Set করছি
+	await redisclient.set(key, otp, {
+		expiration: {
+			type: "EX",
+			value: expirationMinutes,
+		},
+	});
+
+	// যে ফাইলটাতে ejs কোড রাখা আছে সেটা এটার সাথে Join দিলাম
+	const tempatePath = path.join(
+		process.cwd(),
+		"src/app/templates/forgot-password.ejs",
+	);
+
+		// email massage temp formet
+	const templateData = {
+		name: isUserExist.name,
+		otp, // OTP এখানে যেভাবে লিখবো templates/forgot-password.ejs এ সেইম থাকবে
+		expirationMinutes: expirationMinutes / 60,
+	};
+
+	const html = await ejs.renderFile(tempatePath, templateData);
+
+	// Password Change করলে Gmail এ email যাবে
+	await transporter.sendMail({
+		// env config file থেকে আসতেছে
+		from: config.email_sender,
+		to: isUserExist.email,
+		subject: "Forgot Password",
+		html,
+	});
+}
+
+const resetpassword=async(payload:IResetPasswordPayload)=>{
+    const {otp,newPassword}=payload
+	const email = payload.email.trim().toLocaleLowerCase();
+
+	const isUserExist=await prisma.user.findUnique({
+		where:{
+			email
+		}
+	})
+
+	if(!isUserExist){
+		throw new AppError(httpstatus.NOT_FOUND,"user Dose NOt Exist")
+	}
+
+	if(isUserExist.status==="SUSPENDED"){
+		throw new AppError(httpstatus.FORBIDDEN,"user is ‍Suspended")
+	}
+
+	if(isUserExist.emailVerified !== true){
+		throw new AppError(httpstatus.FORBIDDEN,"user is Not Verified")
+	}
+
+	if(isUserExist.isDeleted || isUserExist.status==="DELETED"){
+		throw new AppError(httpstatus.NOT_FOUND,"user is Deleted")
+	}
+
+	//---------- Otp verify-------------
+    //  forgot-password-otp এই নাম forgetpassword এও থাকতে হবে নয় তো Error দিবে
+	const key = `forgot-password-otp:${isUserExist.email}`;
+	// redisclient lib foulder থেকে আসতেছে
+	const redisOtp = await redisclient.get(key);
+
+	if (!redisOtp) {
+		throw new AppError( httpstatus.FORBIDDEN,"Invalid OTP")
+	}
+
+	if (redisOtp !== otp) {
+		throw new AppError(httpstatus.NOT_FOUND,"OTP Does Not Match");
+	}
+
+	const hashedNewPassword = await bcrypt.hash(
+		newPassword,
+		Number(config.bcrypt_salt_rounds),
+	);
+
+	await prisma.user.update({
+		where: {
+			email: isUserExist.email,
+		},
+		data: {
+			password: hashedNewPassword,
+		},
+	});
+
+	// redisclient lib foulder থেকে আসতেছে
+	await redisclient.del([key]);
+
+	// যে ফাইলটাতে ejs কোড রাখা আছে সেটা এটার সাথে Join দিলাম
+	const tempatePath = path.join(
+		process.cwd(),
+		"src/app/templates/reset-Password.ejs",
+	);
+	// email massage temp formet
+	const html = await ejs.renderFile(tempatePath, {
+		name: isUserExist.name,
+	});
+
+	// Password Change করলে Gmail এ email যাবে
+	await transporter.sendMail({
+		// env config file থেকে আসতেছে
+		from: config.email_sender,
+		to: isUserExist.email,
+		subject: "Password Change",
+		html,
+	});
+   
+
+}
+
+
+
+
+
 
 export const AuthService={
     registeruser,
     verifyUserEmail,
     loginuser,
     getMe,
-    refreshToken
+    refreshToken,
+	forgetpassword,
+	resetpassword
+
 }

@@ -1,23 +1,25 @@
 model User {
-  id           String     @id @default(uuid())
-  name         String
-  phone        String?     @unique
-  email        String      @unique
-  password      String?
+  id       String  @id @default(uuid())
+  name     String
+  phone    String? @unique
+  email    String  @unique
+  password String?
 
-  image              String       @default("")
-  imagepublicId      String       @default("")
+  image         String @default("")
+  imagepublicId String @default("")
 
-  role         UserRole   @default(MERCHANT)
-  status       UserStatus @default(ACTIVE)
+  role   UserRole   @default(MERCHANT)
+  status UserStatus @default(ACTIVE)
 
-  emailVerified      Boolean      @default(false)
+  emailVerified Boolean @default(false)
 
-  needPasswordChange Boolean      @default(false)
-  isDeleted          Boolean      @default(false)
+  needPasswordChange Boolean        @default(false)
+  isDeleted          Boolean        @default(false)
   deletedAt          DateTime?
-  createdAt          DateTime     @default(now())
-  updatedAt          DateTime     @updatedAt
+  createdAt          DateTime       @default(now())
+  updatedAt          DateTime       @updatedAt
+  notifications      Notification[]
+  deviceTokens       DeviceToken[]
 
   merchant    Merchant?
   rider       Rider?

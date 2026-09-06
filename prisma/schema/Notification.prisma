@@ -1,0 +1,33 @@
+model Notification {
+  id String @id @default(uuid())
+
+  // registered recipient (merchant/rider/branch staff/admin)
+  userId String?
+  user   User?   @relation(fields: [userId], references: [id])
+
+  // unregistered recipient (parcel's customer) — phone-based
+  recipientPhone String?
+
+  // context this notification is about, if any
+  parcelId String?
+  parcel   Parcel? @relation(fields: [parcelId], references: [id])
+
+  type    NotificationType
+  channel NotificationChannel
+  title   String?
+  message String
+
+  status            NotificationStatus @default(PENDING)
+  providerMessageId String? // SMS gateway / FCM message id, for delivery tracking
+  errorMessage      String?
+
+  sentAt      DateTime?
+  deliveredAt DateTime?
+  createdAt   DateTime  @default(now())
+
+  @@index([userId])
+  @@index([parcelId])
+  @@index([recipientPhone])
+  @@index([status])
+  @@map("notifications")
+}

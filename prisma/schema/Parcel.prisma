@@ -1,6 +1,6 @@
 model Parcel {
-  id           String       @id @default(uuid())
-  trackingCode String       @unique // customer-facing tracking number
+  id           String @id @default(uuid())
+  trackingCode String @unique // customer-facing tracking number
 
   merchantId String
   merchant   Merchant @relation(fields: [merchantId], references: [id])
@@ -9,16 +9,14 @@ model Parcel {
   recipientName    String
   recipientPhone   String
   recipientAddress String
- 
 
   // Recipient location
- recipientUnionId String?
- recipientUnion   Union? @relation("ParcelRecipientUnion", fields: [recipientUnionId], references: [id])
+  recipientUnionId String?
+  recipientUnion   Union?  @relation("ParcelRecipientUnion", fields: [recipientUnionId], references: [id])
 
-
-  parcelType   ParcelType @default(PARCEL)
-  weightKg     Decimal    @db.Decimal(6, 2)
-  description  String?
+  parcelType  ParcelType @default(PARCEL)
+  weightKg    Decimal    @db.Decimal(6, 2)
+  description String?
 
   paymentType    PaymentType @default(COD)
   codAmount      Decimal     @default(0) @db.Decimal(10, 2)
@@ -42,16 +40,17 @@ model Parcel {
   deliveryRiderId String?
   deliveryRider   Rider?  @relation("DeliveryRider", fields: [deliveryRiderId], references: [id])
 
-  deliveryAttempts Int @default(0)
+  deliveryAttempts  Int                    @default(0)
   lastFailureReason DeliveryFailureReason?
-  deliveredAt DateTime?
+  deliveredAt       DateTime?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   trackingEvents TrackingEvent[]
   manifestItems  ManifestParcel[]
-  payments  Payments?
+  notifications  Notification[]
+  payments       Payments?
   ledgerEntry    MerchantLedgerEntry?
 
   @@index([merchantId])

@@ -54,10 +54,12 @@ export const ModelName = {
   Branch: 'Branch',
   BranchStaff: 'BranchStaff',
   DeliveryZone: 'DeliveryZone',
+  DeviceToken: 'DeviceToken',
   Manifest: 'Manifest',
   ManifestParcel: 'ManifestParcel',
   Merchant: 'Merchant',
   MerchantLedgerEntry: 'MerchantLedgerEntry',
+  Notification: 'Notification',
   Parcel: 'Parcel',
   Payments: 'Payments',
   Rider: 'Rider',
@@ -124,6 +126,19 @@ export const DeliveryZoneScalarFieldEnum = {
 export type DeliveryZoneScalarFieldEnum = (typeof DeliveryZoneScalarFieldEnum)[keyof typeof DeliveryZoneScalarFieldEnum]
 
 
+export const DeviceTokenScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  token: 'token',
+  platform: 'platform',
+  isActive: 'isActive',
+  lastUsedAt: 'lastUsedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type DeviceTokenScalarFieldEnum = (typeof DeviceTokenScalarFieldEnum)[keyof typeof DeviceTokenScalarFieldEnum]
+
+
 export const ManifestScalarFieldEnum = {
   id: 'id',
   manifestCode: 'manifestCode',
@@ -181,6 +196,26 @@ export const MerchantLedgerEntryScalarFieldEnum = {
 } as const
 
 export type MerchantLedgerEntryScalarFieldEnum = (typeof MerchantLedgerEntryScalarFieldEnum)[keyof typeof MerchantLedgerEntryScalarFieldEnum]
+
+
+export const NotificationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  recipientPhone: 'recipientPhone',
+  parcelId: 'parcelId',
+  type: 'type',
+  channel: 'channel',
+  title: 'title',
+  message: 'message',
+  status: 'status',
+  providerMessageId: 'providerMessageId',
+  errorMessage: 'errorMessage',
+  sentAt: 'sentAt',
+  deliveredAt: 'deliveredAt',
+  createdAt: 'createdAt'
+} as const
+
+export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
 
 
 export const ParcelScalarFieldEnum = {

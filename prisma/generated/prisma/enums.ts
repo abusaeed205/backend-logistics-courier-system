@@ -9,14 +9,6 @@
 * 🟢 You can import this file directly.
 */
 
-export const LedgerEntryType = {
-  CREDIT: 'CREDIT',
-  DEBIT: 'DEBIT'
-} as const
-
-export type LedgerEntryType = (typeof LedgerEntryType)[keyof typeof LedgerEntryType]
-
-
 export const UserRole = {
   ADMIN: 'ADMIN',
   MERCHANT: 'MERCHANT',
@@ -180,6 +172,14 @@ export const CodPaymentMethod = {
 export type CodPaymentMethod = (typeof CodPaymentMethod)[keyof typeof CodPaymentMethod]
 
 
+export const LedgerEntryType = {
+  CREDIT: 'CREDIT',
+  DEBIT: 'DEBIT'
+} as const
+
+export type LedgerEntryType = (typeof LedgerEntryType)[keyof typeof LedgerEntryType]
+
+
 export const SettlementStatus = {
   PENDING: 'PENDING',
   PROCESSING: 'PROCESSING',
@@ -200,3 +200,49 @@ export const DeliveryFailureReason = {
 } as const
 
 export type DeliveryFailureReason = (typeof DeliveryFailureReason)[keyof typeof DeliveryFailureReason]
+
+
+export const NotificationChannel = {
+  SMS: 'SMS',
+  EMAIL: 'EMAIL',
+  PUSH: 'PUSH',
+  IN_APP: 'IN_APP'
+} as const
+
+export type NotificationChannel = (typeof NotificationChannel)[keyof typeof NotificationChannel]
+
+
+export const NotificationType = {
+  PARCEL_CREATED: 'PARCEL_CREATED',
+  PICKUP_REQUESTED: 'PICKUP_REQUESTED',
+  RIDER_ASSIGNED: 'RIDER_ASSIGNED',
+  PICKED_UP: 'PICKED_UP',
+  OUT_FOR_DELIVERY: 'OUT_FOR_DELIVERY',
+  DELIVERED: 'DELIVERED',
+  DELIVERY_FAILED: 'DELIVERY_FAILED',
+  COD_COLLECTED: 'COD_COLLECTED',
+  SETTLEMENT_COMPLETED: 'SETTLEMENT_COMPLETED',
+  OTP_VERIFICATION: 'OTP_VERIFICATION',
+  GENERIC: 'GENERIC'
+} as const
+
+export type NotificationType = (typeof NotificationType)[keyof typeof NotificationType]
+
+
+export const NotificationStatus = {
+  PENDING: 'PENDING',
+  SENT: 'SENT',
+  FAILED: 'FAILED',
+  DELIVERED: 'DELIVERED'
+} as const
+
+export type NotificationStatus = (typeof NotificationStatus)[keyof typeof NotificationStatus]
+
+
+export const DevicePlatform = {
+  ANDROID: 'ANDROID',
+  IOS: 'IOS',
+  WEB: 'WEB'
+} as const
+
+export type DevicePlatform = (typeof DevicePlatform)[keyof typeof DevicePlatform]

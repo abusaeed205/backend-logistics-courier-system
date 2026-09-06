@@ -1,8 +1,8 @@
 model Branch {
-  id       String     @id @default(uuid())
-  code     String     @unique // e.g. "MIRPUR-01", "CUMILLA-HUB"
-  name     String
-  type     BranchType
+  id   String     @id @default(uuid())
+  code String     @unique // e.g. "MIRPUR-01", "CUMILLA-HUB"
+  name String
+  type BranchType
 
   // Location
   divisionId String
@@ -15,13 +15,13 @@ model Branch {
   upazila   Upazila @relation(fields: [upazilaId], references: [id])
 
   unionId String?
-  union   Union? @relation(fields: [unionId], references: [id])
+  union   Union?  @relation(fields: [unionId], references: [id])
 
   address String
 
   // Branch → Parent Hub/Branch
   parentHubId String?
-  parentHub Branch? @relation("BranchHierarchy", fields: [parentHubId], references: [id])
+  parentHub   Branch? @relation("BranchHierarchy", fields: [parentHubId], references: [id])
 
   childBranches Branch[] @relation("BranchHierarchy")
 
@@ -55,7 +55,7 @@ model Branch {
   destinationManifests Manifest[] @relation("ManifestDestinationBranch")
 
   // COD Collection
-  payments Payments[]
+  payments       Payments[]
   trackingEvents TrackingEvent[]
 
   @@index([divisionId])
@@ -63,6 +63,5 @@ model Branch {
   @@index([upazilaId])
   @@index([unionId])
   @@index([type])
-
   @@map("branches")
 }

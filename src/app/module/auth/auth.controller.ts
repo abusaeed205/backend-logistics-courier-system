@@ -133,11 +133,38 @@ const refreshToken = catchAsync(async (req: Request, res: Response) => {
 });
 
 
+const forgetpassword = catchAsync(async (req: Request, res: Response) => {
+	
+    await AuthService.forgetpassword(req.body)
+    
+	sendResponse(res, {
+		statusCode: httpstatus.OK,
+		success: true,
+		message: "New tokens generated successfully",
+		data:null
+	});
+});
+
+const resetpassword = catchAsync(async (req: Request, res: Response) => {
+	
+    await AuthService.resetpassword(req.body)
+
+	sendResponse(res, {
+		statusCode: httpstatus.OK,
+		success: true,
+		message: "New tokens generated successfully",
+		data:null
+	});
+});
+
+
 
 export const AuthController={
     registerUser,
     verifyUserEmail,
     loginUser,
     getMe,
-    refreshToken
+    refreshToken,
+    forgetpassword,
+    resetpassword
 }

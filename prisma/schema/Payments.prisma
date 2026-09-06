@@ -7,8 +7,8 @@ model Payments {
   branchId String
   branch   Branch @relation(fields: [branchId], references: [id])
 
-riderId String
-rider   Rider @relation(fields: [riderId], references: [id])
+  riderId String
+  rider   Rider  @relation(fields: [riderId], references: [id])
 
   amount Decimal @db.Decimal(10, 2)
 

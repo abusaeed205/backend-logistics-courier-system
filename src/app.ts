@@ -6,6 +6,7 @@ import { globalErrorHandler } from './app/middleware/globalErrorHandler';
 import httpStatus from "http-status";
 import { notFound } from './app/middleware/notFound';
 import { AuthRouters } from './app/module/auth/auth.route';
+import { ParcelRouters } from './app/module/parcel/parcel.route';
 
 const app:Application = express()
 
@@ -27,6 +28,7 @@ app.use(cookieParser());
 
 //All module api Routers 
 app.use("/api/v1/auth",AuthRouters)
+app.use("/api/v1/parcel",ParcelRouters)
 
 
 

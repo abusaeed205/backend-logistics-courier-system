@@ -1,20 +1,18 @@
 model Upazila {
-  id         String   @id @default(uuid())
-  name       String
+  id   String @id @default(uuid())
+  name String
 
   districtId String
   district   District @relation(fields: [districtId], references: [id], onDelete: Restrict)
 
-  unions     Union[]
+  unions Union[]
 
-  branches     Branch[]
+  branches Branch[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-
   @@unique([name, districtId])
   @@index([districtId])
-
   @@map("upazilas")
 }

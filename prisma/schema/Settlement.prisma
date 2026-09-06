@@ -1,19 +1,18 @@
-
 // MerchantLedgerEntry বলে Merchant-এর কত টাকা পাওনা।
 // Settlement বলে সেই পাওনা টাকা কখন, কীভাবে, কত টাকা Merchant-কে দেওয়া হলো।
 
 model Settlement {
-  id         String            @id @default(uuid())
+  id         String   @id @default(uuid())
   merchantId String
-  merchant   Merchant          @relation(fields: [merchantId], references: [id])
+  merchant   Merchant @relation(fields: [merchantId], references: [id])
 
   totalAmount Decimal          @db.Decimal(12, 2)
   method      SettlementMethod
   referenceNo String? // bank/bKash/Nagad transaction ref
   status      SettlementStatus @default(PENDING)
 
-  createdAt  DateTime  @default(now())
-  settledAt  DateTime?
+  createdAt DateTime  @default(now())
+  settledAt DateTime?
 
   ledgerEntries MerchantLedgerEntry[]
 

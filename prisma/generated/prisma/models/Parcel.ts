@@ -389,6 +389,7 @@ export type ParcelWhereInput = {
   deliveryRider?: Prisma.XOR<Prisma.RiderNullableScalarRelationFilter, Prisma.RiderWhereInput> | null
   trackingEvents?: Prisma.TrackingEventListRelationFilter
   manifestItems?: Prisma.ManifestParcelListRelationFilter
+  notifications?: Prisma.NotificationListRelationFilter
   payments?: Prisma.XOR<Prisma.PaymentsNullableScalarRelationFilter, Prisma.PaymentsWhereInput> | null
   ledgerEntry?: Prisma.XOR<Prisma.MerchantLedgerEntryNullableScalarRelationFilter, Prisma.MerchantLedgerEntryWhereInput> | null
 }
@@ -427,6 +428,7 @@ export type ParcelOrderByWithRelationInput = {
   deliveryRider?: Prisma.RiderOrderByWithRelationInput
   trackingEvents?: Prisma.TrackingEventOrderByRelationAggregateInput
   manifestItems?: Prisma.ManifestParcelOrderByRelationAggregateInput
+  notifications?: Prisma.NotificationOrderByRelationAggregateInput
   payments?: Prisma.PaymentsOrderByWithRelationInput
   ledgerEntry?: Prisma.MerchantLedgerEntryOrderByWithRelationInput
 }
@@ -468,6 +470,7 @@ export type ParcelWhereUniqueInput = Prisma.AtLeast<{
   deliveryRider?: Prisma.XOR<Prisma.RiderNullableScalarRelationFilter, Prisma.RiderWhereInput> | null
   trackingEvents?: Prisma.TrackingEventListRelationFilter
   manifestItems?: Prisma.ManifestParcelListRelationFilter
+  notifications?: Prisma.NotificationListRelationFilter
   payments?: Prisma.XOR<Prisma.PaymentsNullableScalarRelationFilter, Prisma.PaymentsWhereInput> | null
   ledgerEntry?: Prisma.XOR<Prisma.MerchantLedgerEntryNullableScalarRelationFilter, Prisma.MerchantLedgerEntryWhereInput> | null
 }, "id" | "trackingCode">
@@ -561,6 +564,7 @@ export type ParcelCreateInput = {
   deliveryRider?: Prisma.RiderCreateNestedOneWithoutDeliveryParcelsInput
   trackingEvents?: Prisma.TrackingEventCreateNestedManyWithoutParcelInput
   manifestItems?: Prisma.ManifestParcelCreateNestedManyWithoutParcelInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutParcelInput
   payments?: Prisma.PaymentsCreateNestedOneWithoutParcelInput
   ledgerEntry?: Prisma.MerchantLedgerEntryCreateNestedOneWithoutParcelInput
 }
@@ -592,6 +596,7 @@ export type ParcelUncheckedCreateInput = {
   updatedAt?: Date | string
   trackingEvents?: Prisma.TrackingEventUncheckedCreateNestedManyWithoutParcelInput
   manifestItems?: Prisma.ManifestParcelUncheckedCreateNestedManyWithoutParcelInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutParcelInput
   payments?: Prisma.PaymentsUncheckedCreateNestedOneWithoutParcelInput
   ledgerEntry?: Prisma.MerchantLedgerEntryUncheckedCreateNestedOneWithoutParcelInput
 }
@@ -623,6 +628,7 @@ export type ParcelUpdateInput = {
   deliveryRider?: Prisma.RiderUpdateOneWithoutDeliveryParcelsNestedInput
   trackingEvents?: Prisma.TrackingEventUpdateManyWithoutParcelNestedInput
   manifestItems?: Prisma.ManifestParcelUpdateManyWithoutParcelNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutParcelNestedInput
   payments?: Prisma.PaymentsUpdateOneWithoutParcelNestedInput
   ledgerEntry?: Prisma.MerchantLedgerEntryUpdateOneWithoutParcelNestedInput
 }
@@ -654,6 +660,7 @@ export type ParcelUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   trackingEvents?: Prisma.TrackingEventUncheckedUpdateManyWithoutParcelNestedInput
   manifestItems?: Prisma.ManifestParcelUncheckedUpdateManyWithoutParcelNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutParcelNestedInput
   payments?: Prisma.PaymentsUncheckedUpdateOneWithoutParcelNestedInput
   ledgerEntry?: Prisma.MerchantLedgerEntryUncheckedUpdateOneWithoutParcelNestedInput
 }
@@ -1045,6 +1052,22 @@ export type ParcelUpdateOneWithoutLedgerEntryNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ParcelUpdateToOneWithWhereWithoutLedgerEntryInput, Prisma.ParcelUpdateWithoutLedgerEntryInput>, Prisma.ParcelUncheckedUpdateWithoutLedgerEntryInput>
 }
 
+export type ParcelCreateNestedOneWithoutNotificationsInput = {
+  create?: Prisma.XOR<Prisma.ParcelCreateWithoutNotificationsInput, Prisma.ParcelUncheckedCreateWithoutNotificationsInput>
+  connectOrCreate?: Prisma.ParcelCreateOrConnectWithoutNotificationsInput
+  connect?: Prisma.ParcelWhereUniqueInput
+}
+
+export type ParcelUpdateOneWithoutNotificationsNestedInput = {
+  create?: Prisma.XOR<Prisma.ParcelCreateWithoutNotificationsInput, Prisma.ParcelUncheckedCreateWithoutNotificationsInput>
+  connectOrCreate?: Prisma.ParcelCreateOrConnectWithoutNotificationsInput
+  upsert?: Prisma.ParcelUpsertWithoutNotificationsInput
+  disconnect?: Prisma.ParcelWhereInput | boolean
+  delete?: Prisma.ParcelWhereInput | boolean
+  connect?: Prisma.ParcelWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ParcelUpdateToOneWithWhereWithoutNotificationsInput, Prisma.ParcelUpdateWithoutNotificationsInput>, Prisma.ParcelUncheckedUpdateWithoutNotificationsInput>
+}
+
 export type EnumParcelTypeFieldUpdateOperationsInput = {
   set?: $Enums.ParcelType
 }
@@ -1249,6 +1272,7 @@ export type ParcelCreateWithoutOriginBranchInput = {
   deliveryRider?: Prisma.RiderCreateNestedOneWithoutDeliveryParcelsInput
   trackingEvents?: Prisma.TrackingEventCreateNestedManyWithoutParcelInput
   manifestItems?: Prisma.ManifestParcelCreateNestedManyWithoutParcelInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutParcelInput
   payments?: Prisma.PaymentsCreateNestedOneWithoutParcelInput
   ledgerEntry?: Prisma.MerchantLedgerEntryCreateNestedOneWithoutParcelInput
 }
@@ -1279,6 +1303,7 @@ export type ParcelUncheckedCreateWithoutOriginBranchInput = {
   updatedAt?: Date | string
   trackingEvents?: Prisma.TrackingEventUncheckedCreateNestedManyWithoutParcelInput
   manifestItems?: Prisma.ManifestParcelUncheckedCreateNestedManyWithoutParcelInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutParcelInput
   payments?: Prisma.PaymentsUncheckedCreateNestedOneWithoutParcelInput
   ledgerEntry?: Prisma.MerchantLedgerEntryUncheckedCreateNestedOneWithoutParcelInput
 }
@@ -1319,6 +1344,7 @@ export type ParcelCreateWithoutDestinationBranchInput = {
   deliveryRider?: Prisma.RiderCreateNestedOneWithoutDeliveryParcelsInput
   trackingEvents?: Prisma.TrackingEventCreateNestedManyWithoutParcelInput
   manifestItems?: Prisma.ManifestParcelCreateNestedManyWithoutParcelInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutParcelInput
   payments?: Prisma.PaymentsCreateNestedOneWithoutParcelInput
   ledgerEntry?: Prisma.MerchantLedgerEntryCreateNestedOneWithoutParcelInput
 }
@@ -1349,6 +1375,7 @@ export type ParcelUncheckedCreateWithoutDestinationBranchInput = {
   updatedAt?: Date | string
   trackingEvents?: Prisma.TrackingEventUncheckedCreateNestedManyWithoutParcelInput
   manifestItems?: Prisma.ManifestParcelUncheckedCreateNestedManyWithoutParcelInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutParcelInput
   payments?: Prisma.PaymentsUncheckedCreateNestedOneWithoutParcelInput
   ledgerEntry?: Prisma.MerchantLedgerEntryUncheckedCreateNestedOneWithoutParcelInput
 }
@@ -1389,6 +1416,7 @@ export type ParcelCreateWithoutCurrentBranchInput = {
   deliveryRider?: Prisma.RiderCreateNestedOneWithoutDeliveryParcelsInput
   trackingEvents?: Prisma.TrackingEventCreateNestedManyWithoutParcelInput
   manifestItems?: Prisma.ManifestParcelCreateNestedManyWithoutParcelInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutParcelInput
   payments?: Prisma.PaymentsCreateNestedOneWithoutParcelInput
   ledgerEntry?: Prisma.MerchantLedgerEntryCreateNestedOneWithoutParcelInput
 }
@@ -1419,6 +1447,7 @@ export type ParcelUncheckedCreateWithoutCurrentBranchInput = {
   updatedAt?: Date | string
   trackingEvents?: Prisma.TrackingEventUncheckedCreateNestedManyWithoutParcelInput
   manifestItems?: Prisma.ManifestParcelUncheckedCreateNestedManyWithoutParcelInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutParcelInput
   payments?: Prisma.PaymentsUncheckedCreateNestedOneWithoutParcelInput
   ledgerEntry?: Prisma.MerchantLedgerEntryUncheckedCreateNestedOneWithoutParcelInput
 }
@@ -1537,6 +1566,7 @@ export type ParcelCreateWithoutManifestItemsInput = {
   pickupRider?: Prisma.RiderCreateNestedOneWithoutPickupParcelsInput
   deliveryRider?: Prisma.RiderCreateNestedOneWithoutDeliveryParcelsInput
   trackingEvents?: Prisma.TrackingEventCreateNestedManyWithoutParcelInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutParcelInput
   payments?: Prisma.PaymentsCreateNestedOneWithoutParcelInput
   ledgerEntry?: Prisma.MerchantLedgerEntryCreateNestedOneWithoutParcelInput
 }
@@ -1567,6 +1597,7 @@ export type ParcelUncheckedCreateWithoutManifestItemsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   trackingEvents?: Prisma.TrackingEventUncheckedCreateNestedManyWithoutParcelInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutParcelInput
   payments?: Prisma.PaymentsUncheckedCreateNestedOneWithoutParcelInput
   ledgerEntry?: Prisma.MerchantLedgerEntryUncheckedCreateNestedOneWithoutParcelInput
 }
@@ -1613,6 +1644,7 @@ export type ParcelUpdateWithoutManifestItemsInput = {
   pickupRider?: Prisma.RiderUpdateOneWithoutPickupParcelsNestedInput
   deliveryRider?: Prisma.RiderUpdateOneWithoutDeliveryParcelsNestedInput
   trackingEvents?: Prisma.TrackingEventUpdateManyWithoutParcelNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutParcelNestedInput
   payments?: Prisma.PaymentsUpdateOneWithoutParcelNestedInput
   ledgerEntry?: Prisma.MerchantLedgerEntryUpdateOneWithoutParcelNestedInput
 }
@@ -1643,6 +1675,7 @@ export type ParcelUncheckedUpdateWithoutManifestItemsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   trackingEvents?: Prisma.TrackingEventUncheckedUpdateManyWithoutParcelNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutParcelNestedInput
   payments?: Prisma.PaymentsUncheckedUpdateOneWithoutParcelNestedInput
   ledgerEntry?: Prisma.MerchantLedgerEntryUncheckedUpdateOneWithoutParcelNestedInput
 }
@@ -1673,6 +1706,7 @@ export type ParcelCreateWithoutMerchantInput = {
   deliveryRider?: Prisma.RiderCreateNestedOneWithoutDeliveryParcelsInput
   trackingEvents?: Prisma.TrackingEventCreateNestedManyWithoutParcelInput
   manifestItems?: Prisma.ManifestParcelCreateNestedManyWithoutParcelInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutParcelInput
   payments?: Prisma.PaymentsCreateNestedOneWithoutParcelInput
   ledgerEntry?: Prisma.MerchantLedgerEntryCreateNestedOneWithoutParcelInput
 }
@@ -1703,6 +1737,7 @@ export type ParcelUncheckedCreateWithoutMerchantInput = {
   updatedAt?: Date | string
   trackingEvents?: Prisma.TrackingEventUncheckedCreateNestedManyWithoutParcelInput
   manifestItems?: Prisma.ManifestParcelUncheckedCreateNestedManyWithoutParcelInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutParcelInput
   payments?: Prisma.PaymentsUncheckedCreateNestedOneWithoutParcelInput
   ledgerEntry?: Prisma.MerchantLedgerEntryUncheckedCreateNestedOneWithoutParcelInput
 }
@@ -1760,6 +1795,7 @@ export type ParcelCreateWithoutLedgerEntryInput = {
   deliveryRider?: Prisma.RiderCreateNestedOneWithoutDeliveryParcelsInput
   trackingEvents?: Prisma.TrackingEventCreateNestedManyWithoutParcelInput
   manifestItems?: Prisma.ManifestParcelCreateNestedManyWithoutParcelInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutParcelInput
   payments?: Prisma.PaymentsCreateNestedOneWithoutParcelInput
 }
 
@@ -1790,6 +1826,7 @@ export type ParcelUncheckedCreateWithoutLedgerEntryInput = {
   updatedAt?: Date | string
   trackingEvents?: Prisma.TrackingEventUncheckedCreateNestedManyWithoutParcelInput
   manifestItems?: Prisma.ManifestParcelUncheckedCreateNestedManyWithoutParcelInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutParcelInput
   payments?: Prisma.PaymentsUncheckedCreateNestedOneWithoutParcelInput
 }
 
@@ -1836,6 +1873,7 @@ export type ParcelUpdateWithoutLedgerEntryInput = {
   deliveryRider?: Prisma.RiderUpdateOneWithoutDeliveryParcelsNestedInput
   trackingEvents?: Prisma.TrackingEventUpdateManyWithoutParcelNestedInput
   manifestItems?: Prisma.ManifestParcelUpdateManyWithoutParcelNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutParcelNestedInput
   payments?: Prisma.PaymentsUpdateOneWithoutParcelNestedInput
 }
 
@@ -1866,7 +1904,148 @@ export type ParcelUncheckedUpdateWithoutLedgerEntryInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   trackingEvents?: Prisma.TrackingEventUncheckedUpdateManyWithoutParcelNestedInput
   manifestItems?: Prisma.ManifestParcelUncheckedUpdateManyWithoutParcelNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutParcelNestedInput
   payments?: Prisma.PaymentsUncheckedUpdateOneWithoutParcelNestedInput
+}
+
+export type ParcelCreateWithoutNotificationsInput = {
+  id?: string
+  trackingCode: string
+  recipientName: string
+  recipientPhone: string
+  recipientAddress: string
+  parcelType?: $Enums.ParcelType
+  weightKg: runtime.Decimal | runtime.DecimalJsLike | number | string
+  description?: string | null
+  paymentType?: $Enums.PaymentType
+  codAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  deliveryCharge?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  currentStatus?: $Enums.ParcelStatus
+  deliveryAttempts?: number
+  lastFailureReason?: $Enums.DeliveryFailureReason | null
+  deliveredAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  merchant: Prisma.MerchantCreateNestedOneWithoutParcelsInput
+  recipientUnion?: Prisma.UnionCreateNestedOneWithoutRecipientParcelsInput
+  originBranch?: Prisma.BranchCreateNestedOneWithoutOriginParcelsInput
+  destinationBranch?: Prisma.BranchCreateNestedOneWithoutDestinationParcelsInput
+  currentBranch?: Prisma.BranchCreateNestedOneWithoutCurrentLocationParcelsInput
+  pickupRider?: Prisma.RiderCreateNestedOneWithoutPickupParcelsInput
+  deliveryRider?: Prisma.RiderCreateNestedOneWithoutDeliveryParcelsInput
+  trackingEvents?: Prisma.TrackingEventCreateNestedManyWithoutParcelInput
+  manifestItems?: Prisma.ManifestParcelCreateNestedManyWithoutParcelInput
+  payments?: Prisma.PaymentsCreateNestedOneWithoutParcelInput
+  ledgerEntry?: Prisma.MerchantLedgerEntryCreateNestedOneWithoutParcelInput
+}
+
+export type ParcelUncheckedCreateWithoutNotificationsInput = {
+  id?: string
+  trackingCode: string
+  merchantId: string
+  recipientName: string
+  recipientPhone: string
+  recipientAddress: string
+  recipientUnionId?: string | null
+  parcelType?: $Enums.ParcelType
+  weightKg: runtime.Decimal | runtime.DecimalJsLike | number | string
+  description?: string | null
+  paymentType?: $Enums.PaymentType
+  codAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  deliveryCharge?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  currentStatus?: $Enums.ParcelStatus
+  originBranchId?: string | null
+  destinationBranchId?: string | null
+  currentBranchId?: string | null
+  pickupRiderId?: string | null
+  deliveryRiderId?: string | null
+  deliveryAttempts?: number
+  lastFailureReason?: $Enums.DeliveryFailureReason | null
+  deliveredAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  trackingEvents?: Prisma.TrackingEventUncheckedCreateNestedManyWithoutParcelInput
+  manifestItems?: Prisma.ManifestParcelUncheckedCreateNestedManyWithoutParcelInput
+  payments?: Prisma.PaymentsUncheckedCreateNestedOneWithoutParcelInput
+  ledgerEntry?: Prisma.MerchantLedgerEntryUncheckedCreateNestedOneWithoutParcelInput
+}
+
+export type ParcelCreateOrConnectWithoutNotificationsInput = {
+  where: Prisma.ParcelWhereUniqueInput
+  create: Prisma.XOR<Prisma.ParcelCreateWithoutNotificationsInput, Prisma.ParcelUncheckedCreateWithoutNotificationsInput>
+}
+
+export type ParcelUpsertWithoutNotificationsInput = {
+  update: Prisma.XOR<Prisma.ParcelUpdateWithoutNotificationsInput, Prisma.ParcelUncheckedUpdateWithoutNotificationsInput>
+  create: Prisma.XOR<Prisma.ParcelCreateWithoutNotificationsInput, Prisma.ParcelUncheckedCreateWithoutNotificationsInput>
+  where?: Prisma.ParcelWhereInput
+}
+
+export type ParcelUpdateToOneWithWhereWithoutNotificationsInput = {
+  where?: Prisma.ParcelWhereInput
+  data: Prisma.XOR<Prisma.ParcelUpdateWithoutNotificationsInput, Prisma.ParcelUncheckedUpdateWithoutNotificationsInput>
+}
+
+export type ParcelUpdateWithoutNotificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  trackingCode?: Prisma.StringFieldUpdateOperationsInput | string
+  recipientName?: Prisma.StringFieldUpdateOperationsInput | string
+  recipientPhone?: Prisma.StringFieldUpdateOperationsInput | string
+  recipientAddress?: Prisma.StringFieldUpdateOperationsInput | string
+  parcelType?: Prisma.EnumParcelTypeFieldUpdateOperationsInput | $Enums.ParcelType
+  weightKg?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentType?: Prisma.EnumPaymentTypeFieldUpdateOperationsInput | $Enums.PaymentType
+  codAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  deliveryCharge?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  currentStatus?: Prisma.EnumParcelStatusFieldUpdateOperationsInput | $Enums.ParcelStatus
+  deliveryAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lastFailureReason?: Prisma.NullableEnumDeliveryFailureReasonFieldUpdateOperationsInput | $Enums.DeliveryFailureReason | null
+  deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  merchant?: Prisma.MerchantUpdateOneRequiredWithoutParcelsNestedInput
+  recipientUnion?: Prisma.UnionUpdateOneWithoutRecipientParcelsNestedInput
+  originBranch?: Prisma.BranchUpdateOneWithoutOriginParcelsNestedInput
+  destinationBranch?: Prisma.BranchUpdateOneWithoutDestinationParcelsNestedInput
+  currentBranch?: Prisma.BranchUpdateOneWithoutCurrentLocationParcelsNestedInput
+  pickupRider?: Prisma.RiderUpdateOneWithoutPickupParcelsNestedInput
+  deliveryRider?: Prisma.RiderUpdateOneWithoutDeliveryParcelsNestedInput
+  trackingEvents?: Prisma.TrackingEventUpdateManyWithoutParcelNestedInput
+  manifestItems?: Prisma.ManifestParcelUpdateManyWithoutParcelNestedInput
+  payments?: Prisma.PaymentsUpdateOneWithoutParcelNestedInput
+  ledgerEntry?: Prisma.MerchantLedgerEntryUpdateOneWithoutParcelNestedInput
+}
+
+export type ParcelUncheckedUpdateWithoutNotificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  trackingCode?: Prisma.StringFieldUpdateOperationsInput | string
+  merchantId?: Prisma.StringFieldUpdateOperationsInput | string
+  recipientName?: Prisma.StringFieldUpdateOperationsInput | string
+  recipientPhone?: Prisma.StringFieldUpdateOperationsInput | string
+  recipientAddress?: Prisma.StringFieldUpdateOperationsInput | string
+  recipientUnionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parcelType?: Prisma.EnumParcelTypeFieldUpdateOperationsInput | $Enums.ParcelType
+  weightKg?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentType?: Prisma.EnumPaymentTypeFieldUpdateOperationsInput | $Enums.PaymentType
+  codAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  deliveryCharge?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  currentStatus?: Prisma.EnumParcelStatusFieldUpdateOperationsInput | $Enums.ParcelStatus
+  originBranchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinationBranchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  currentBranchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pickupRiderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deliveryRiderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deliveryAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lastFailureReason?: Prisma.NullableEnumDeliveryFailureReasonFieldUpdateOperationsInput | $Enums.DeliveryFailureReason | null
+  deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  trackingEvents?: Prisma.TrackingEventUncheckedUpdateManyWithoutParcelNestedInput
+  manifestItems?: Prisma.ManifestParcelUncheckedUpdateManyWithoutParcelNestedInput
+  payments?: Prisma.PaymentsUncheckedUpdateOneWithoutParcelNestedInput
+  ledgerEntry?: Prisma.MerchantLedgerEntryUncheckedUpdateOneWithoutParcelNestedInput
 }
 
 export type ParcelCreateWithoutPaymentsInput = {
@@ -1896,6 +2075,7 @@ export type ParcelCreateWithoutPaymentsInput = {
   deliveryRider?: Prisma.RiderCreateNestedOneWithoutDeliveryParcelsInput
   trackingEvents?: Prisma.TrackingEventCreateNestedManyWithoutParcelInput
   manifestItems?: Prisma.ManifestParcelCreateNestedManyWithoutParcelInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutParcelInput
   ledgerEntry?: Prisma.MerchantLedgerEntryCreateNestedOneWithoutParcelInput
 }
 
@@ -1926,6 +2106,7 @@ export type ParcelUncheckedCreateWithoutPaymentsInput = {
   updatedAt?: Date | string
   trackingEvents?: Prisma.TrackingEventUncheckedCreateNestedManyWithoutParcelInput
   manifestItems?: Prisma.ManifestParcelUncheckedCreateNestedManyWithoutParcelInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutParcelInput
   ledgerEntry?: Prisma.MerchantLedgerEntryUncheckedCreateNestedOneWithoutParcelInput
 }
 
@@ -1972,6 +2153,7 @@ export type ParcelUpdateWithoutPaymentsInput = {
   deliveryRider?: Prisma.RiderUpdateOneWithoutDeliveryParcelsNestedInput
   trackingEvents?: Prisma.TrackingEventUpdateManyWithoutParcelNestedInput
   manifestItems?: Prisma.ManifestParcelUpdateManyWithoutParcelNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutParcelNestedInput
   ledgerEntry?: Prisma.MerchantLedgerEntryUpdateOneWithoutParcelNestedInput
 }
 
@@ -2002,6 +2184,7 @@ export type ParcelUncheckedUpdateWithoutPaymentsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   trackingEvents?: Prisma.TrackingEventUncheckedUpdateManyWithoutParcelNestedInput
   manifestItems?: Prisma.ManifestParcelUncheckedUpdateManyWithoutParcelNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutParcelNestedInput
   ledgerEntry?: Prisma.MerchantLedgerEntryUncheckedUpdateOneWithoutParcelNestedInput
 }
 
@@ -2031,6 +2214,7 @@ export type ParcelCreateWithoutPickupRiderInput = {
   deliveryRider?: Prisma.RiderCreateNestedOneWithoutDeliveryParcelsInput
   trackingEvents?: Prisma.TrackingEventCreateNestedManyWithoutParcelInput
   manifestItems?: Prisma.ManifestParcelCreateNestedManyWithoutParcelInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutParcelInput
   payments?: Prisma.PaymentsCreateNestedOneWithoutParcelInput
   ledgerEntry?: Prisma.MerchantLedgerEntryCreateNestedOneWithoutParcelInput
 }
@@ -2061,6 +2245,7 @@ export type ParcelUncheckedCreateWithoutPickupRiderInput = {
   updatedAt?: Date | string
   trackingEvents?: Prisma.TrackingEventUncheckedCreateNestedManyWithoutParcelInput
   manifestItems?: Prisma.ManifestParcelUncheckedCreateNestedManyWithoutParcelInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutParcelInput
   payments?: Prisma.PaymentsUncheckedCreateNestedOneWithoutParcelInput
   ledgerEntry?: Prisma.MerchantLedgerEntryUncheckedCreateNestedOneWithoutParcelInput
 }
@@ -2101,6 +2286,7 @@ export type ParcelCreateWithoutDeliveryRiderInput = {
   pickupRider?: Prisma.RiderCreateNestedOneWithoutPickupParcelsInput
   trackingEvents?: Prisma.TrackingEventCreateNestedManyWithoutParcelInput
   manifestItems?: Prisma.ManifestParcelCreateNestedManyWithoutParcelInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutParcelInput
   payments?: Prisma.PaymentsCreateNestedOneWithoutParcelInput
   ledgerEntry?: Prisma.MerchantLedgerEntryCreateNestedOneWithoutParcelInput
 }
@@ -2131,6 +2317,7 @@ export type ParcelUncheckedCreateWithoutDeliveryRiderInput = {
   updatedAt?: Date | string
   trackingEvents?: Prisma.TrackingEventUncheckedCreateNestedManyWithoutParcelInput
   manifestItems?: Prisma.ManifestParcelUncheckedCreateNestedManyWithoutParcelInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutParcelInput
   payments?: Prisma.PaymentsUncheckedCreateNestedOneWithoutParcelInput
   ledgerEntry?: Prisma.MerchantLedgerEntryUncheckedCreateNestedOneWithoutParcelInput
 }
@@ -2203,6 +2390,7 @@ export type ParcelCreateWithoutTrackingEventsInput = {
   pickupRider?: Prisma.RiderCreateNestedOneWithoutPickupParcelsInput
   deliveryRider?: Prisma.RiderCreateNestedOneWithoutDeliveryParcelsInput
   manifestItems?: Prisma.ManifestParcelCreateNestedManyWithoutParcelInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutParcelInput
   payments?: Prisma.PaymentsCreateNestedOneWithoutParcelInput
   ledgerEntry?: Prisma.MerchantLedgerEntryCreateNestedOneWithoutParcelInput
 }
@@ -2233,6 +2421,7 @@ export type ParcelUncheckedCreateWithoutTrackingEventsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   manifestItems?: Prisma.ManifestParcelUncheckedCreateNestedManyWithoutParcelInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutParcelInput
   payments?: Prisma.PaymentsUncheckedCreateNestedOneWithoutParcelInput
   ledgerEntry?: Prisma.MerchantLedgerEntryUncheckedCreateNestedOneWithoutParcelInput
 }
@@ -2279,6 +2468,7 @@ export type ParcelUpdateWithoutTrackingEventsInput = {
   pickupRider?: Prisma.RiderUpdateOneWithoutPickupParcelsNestedInput
   deliveryRider?: Prisma.RiderUpdateOneWithoutDeliveryParcelsNestedInput
   manifestItems?: Prisma.ManifestParcelUpdateManyWithoutParcelNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutParcelNestedInput
   payments?: Prisma.PaymentsUpdateOneWithoutParcelNestedInput
   ledgerEntry?: Prisma.MerchantLedgerEntryUpdateOneWithoutParcelNestedInput
 }
@@ -2309,6 +2499,7 @@ export type ParcelUncheckedUpdateWithoutTrackingEventsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   manifestItems?: Prisma.ManifestParcelUncheckedUpdateManyWithoutParcelNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutParcelNestedInput
   payments?: Prisma.PaymentsUncheckedUpdateOneWithoutParcelNestedInput
   ledgerEntry?: Prisma.MerchantLedgerEntryUncheckedUpdateOneWithoutParcelNestedInput
 }
@@ -2339,6 +2530,7 @@ export type ParcelCreateWithoutRecipientUnionInput = {
   deliveryRider?: Prisma.RiderCreateNestedOneWithoutDeliveryParcelsInput
   trackingEvents?: Prisma.TrackingEventCreateNestedManyWithoutParcelInput
   manifestItems?: Prisma.ManifestParcelCreateNestedManyWithoutParcelInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutParcelInput
   payments?: Prisma.PaymentsCreateNestedOneWithoutParcelInput
   ledgerEntry?: Prisma.MerchantLedgerEntryCreateNestedOneWithoutParcelInput
 }
@@ -2369,6 +2561,7 @@ export type ParcelUncheckedCreateWithoutRecipientUnionInput = {
   updatedAt?: Date | string
   trackingEvents?: Prisma.TrackingEventUncheckedCreateNestedManyWithoutParcelInput
   manifestItems?: Prisma.ManifestParcelUncheckedCreateNestedManyWithoutParcelInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutParcelInput
   payments?: Prisma.PaymentsUncheckedCreateNestedOneWithoutParcelInput
   ledgerEntry?: Prisma.MerchantLedgerEntryUncheckedCreateNestedOneWithoutParcelInput
 }
@@ -2503,6 +2696,7 @@ export type ParcelUpdateWithoutOriginBranchInput = {
   deliveryRider?: Prisma.RiderUpdateOneWithoutDeliveryParcelsNestedInput
   trackingEvents?: Prisma.TrackingEventUpdateManyWithoutParcelNestedInput
   manifestItems?: Prisma.ManifestParcelUpdateManyWithoutParcelNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutParcelNestedInput
   payments?: Prisma.PaymentsUpdateOneWithoutParcelNestedInput
   ledgerEntry?: Prisma.MerchantLedgerEntryUpdateOneWithoutParcelNestedInput
 }
@@ -2533,6 +2727,7 @@ export type ParcelUncheckedUpdateWithoutOriginBranchInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   trackingEvents?: Prisma.TrackingEventUncheckedUpdateManyWithoutParcelNestedInput
   manifestItems?: Prisma.ManifestParcelUncheckedUpdateManyWithoutParcelNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutParcelNestedInput
   payments?: Prisma.PaymentsUncheckedUpdateOneWithoutParcelNestedInput
   ledgerEntry?: Prisma.MerchantLedgerEntryUncheckedUpdateOneWithoutParcelNestedInput
 }
@@ -2589,6 +2784,7 @@ export type ParcelUpdateWithoutDestinationBranchInput = {
   deliveryRider?: Prisma.RiderUpdateOneWithoutDeliveryParcelsNestedInput
   trackingEvents?: Prisma.TrackingEventUpdateManyWithoutParcelNestedInput
   manifestItems?: Prisma.ManifestParcelUpdateManyWithoutParcelNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutParcelNestedInput
   payments?: Prisma.PaymentsUpdateOneWithoutParcelNestedInput
   ledgerEntry?: Prisma.MerchantLedgerEntryUpdateOneWithoutParcelNestedInput
 }
@@ -2619,6 +2815,7 @@ export type ParcelUncheckedUpdateWithoutDestinationBranchInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   trackingEvents?: Prisma.TrackingEventUncheckedUpdateManyWithoutParcelNestedInput
   manifestItems?: Prisma.ManifestParcelUncheckedUpdateManyWithoutParcelNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutParcelNestedInput
   payments?: Prisma.PaymentsUncheckedUpdateOneWithoutParcelNestedInput
   ledgerEntry?: Prisma.MerchantLedgerEntryUncheckedUpdateOneWithoutParcelNestedInput
 }
@@ -2675,6 +2872,7 @@ export type ParcelUpdateWithoutCurrentBranchInput = {
   deliveryRider?: Prisma.RiderUpdateOneWithoutDeliveryParcelsNestedInput
   trackingEvents?: Prisma.TrackingEventUpdateManyWithoutParcelNestedInput
   manifestItems?: Prisma.ManifestParcelUpdateManyWithoutParcelNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutParcelNestedInput
   payments?: Prisma.PaymentsUpdateOneWithoutParcelNestedInput
   ledgerEntry?: Prisma.MerchantLedgerEntryUpdateOneWithoutParcelNestedInput
 }
@@ -2705,6 +2903,7 @@ export type ParcelUncheckedUpdateWithoutCurrentBranchInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   trackingEvents?: Prisma.TrackingEventUncheckedUpdateManyWithoutParcelNestedInput
   manifestItems?: Prisma.ManifestParcelUncheckedUpdateManyWithoutParcelNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutParcelNestedInput
   payments?: Prisma.PaymentsUncheckedUpdateOneWithoutParcelNestedInput
   ledgerEntry?: Prisma.MerchantLedgerEntryUncheckedUpdateOneWithoutParcelNestedInput
 }
@@ -2787,6 +2986,7 @@ export type ParcelUpdateWithoutMerchantInput = {
   deliveryRider?: Prisma.RiderUpdateOneWithoutDeliveryParcelsNestedInput
   trackingEvents?: Prisma.TrackingEventUpdateManyWithoutParcelNestedInput
   manifestItems?: Prisma.ManifestParcelUpdateManyWithoutParcelNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutParcelNestedInput
   payments?: Prisma.PaymentsUpdateOneWithoutParcelNestedInput
   ledgerEntry?: Prisma.MerchantLedgerEntryUpdateOneWithoutParcelNestedInput
 }
@@ -2817,6 +3017,7 @@ export type ParcelUncheckedUpdateWithoutMerchantInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   trackingEvents?: Prisma.TrackingEventUncheckedUpdateManyWithoutParcelNestedInput
   manifestItems?: Prisma.ManifestParcelUncheckedUpdateManyWithoutParcelNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutParcelNestedInput
   payments?: Prisma.PaymentsUncheckedUpdateOneWithoutParcelNestedInput
   ledgerEntry?: Prisma.MerchantLedgerEntryUncheckedUpdateOneWithoutParcelNestedInput
 }
@@ -2925,6 +3126,7 @@ export type ParcelUpdateWithoutPickupRiderInput = {
   deliveryRider?: Prisma.RiderUpdateOneWithoutDeliveryParcelsNestedInput
   trackingEvents?: Prisma.TrackingEventUpdateManyWithoutParcelNestedInput
   manifestItems?: Prisma.ManifestParcelUpdateManyWithoutParcelNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutParcelNestedInput
   payments?: Prisma.PaymentsUpdateOneWithoutParcelNestedInput
   ledgerEntry?: Prisma.MerchantLedgerEntryUpdateOneWithoutParcelNestedInput
 }
@@ -2955,6 +3157,7 @@ export type ParcelUncheckedUpdateWithoutPickupRiderInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   trackingEvents?: Prisma.TrackingEventUncheckedUpdateManyWithoutParcelNestedInput
   manifestItems?: Prisma.ManifestParcelUncheckedUpdateManyWithoutParcelNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutParcelNestedInput
   payments?: Prisma.PaymentsUncheckedUpdateOneWithoutParcelNestedInput
   ledgerEntry?: Prisma.MerchantLedgerEntryUncheckedUpdateOneWithoutParcelNestedInput
 }
@@ -3011,6 +3214,7 @@ export type ParcelUpdateWithoutDeliveryRiderInput = {
   pickupRider?: Prisma.RiderUpdateOneWithoutPickupParcelsNestedInput
   trackingEvents?: Prisma.TrackingEventUpdateManyWithoutParcelNestedInput
   manifestItems?: Prisma.ManifestParcelUpdateManyWithoutParcelNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutParcelNestedInput
   payments?: Prisma.PaymentsUpdateOneWithoutParcelNestedInput
   ledgerEntry?: Prisma.MerchantLedgerEntryUpdateOneWithoutParcelNestedInput
 }
@@ -3041,6 +3245,7 @@ export type ParcelUncheckedUpdateWithoutDeliveryRiderInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   trackingEvents?: Prisma.TrackingEventUncheckedUpdateManyWithoutParcelNestedInput
   manifestItems?: Prisma.ManifestParcelUncheckedUpdateManyWithoutParcelNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutParcelNestedInput
   payments?: Prisma.PaymentsUncheckedUpdateOneWithoutParcelNestedInput
   ledgerEntry?: Prisma.MerchantLedgerEntryUncheckedUpdateOneWithoutParcelNestedInput
 }
@@ -3123,6 +3328,7 @@ export type ParcelUpdateWithoutRecipientUnionInput = {
   deliveryRider?: Prisma.RiderUpdateOneWithoutDeliveryParcelsNestedInput
   trackingEvents?: Prisma.TrackingEventUpdateManyWithoutParcelNestedInput
   manifestItems?: Prisma.ManifestParcelUpdateManyWithoutParcelNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutParcelNestedInput
   payments?: Prisma.PaymentsUpdateOneWithoutParcelNestedInput
   ledgerEntry?: Prisma.MerchantLedgerEntryUpdateOneWithoutParcelNestedInput
 }
@@ -3153,6 +3359,7 @@ export type ParcelUncheckedUpdateWithoutRecipientUnionInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   trackingEvents?: Prisma.TrackingEventUncheckedUpdateManyWithoutParcelNestedInput
   manifestItems?: Prisma.ManifestParcelUncheckedUpdateManyWithoutParcelNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutParcelNestedInput
   payments?: Prisma.PaymentsUncheckedUpdateOneWithoutParcelNestedInput
   ledgerEntry?: Prisma.MerchantLedgerEntryUncheckedUpdateOneWithoutParcelNestedInput
 }
@@ -3191,11 +3398,13 @@ export type ParcelUncheckedUpdateManyWithoutRecipientUnionInput = {
 export type ParcelCountOutputType = {
   trackingEvents: number
   manifestItems: number
+  notifications: number
 }
 
 export type ParcelCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   trackingEvents?: boolean | ParcelCountOutputTypeCountTrackingEventsArgs
   manifestItems?: boolean | ParcelCountOutputTypeCountManifestItemsArgs
+  notifications?: boolean | ParcelCountOutputTypeCountNotificationsArgs
 }
 
 /**
@@ -3220,6 +3429,13 @@ export type ParcelCountOutputTypeCountTrackingEventsArgs<ExtArgs extends runtime
  */
 export type ParcelCountOutputTypeCountManifestItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.ManifestParcelWhereInput
+}
+
+/**
+ * ParcelCountOutputType without action
+ */
+export type ParcelCountOutputTypeCountNotificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.NotificationWhereInput
 }
 
 
@@ -3257,6 +3473,7 @@ export type ParcelSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   deliveryRider?: boolean | Prisma.Parcel$deliveryRiderArgs<ExtArgs>
   trackingEvents?: boolean | Prisma.Parcel$trackingEventsArgs<ExtArgs>
   manifestItems?: boolean | Prisma.Parcel$manifestItemsArgs<ExtArgs>
+  notifications?: boolean | Prisma.Parcel$notificationsArgs<ExtArgs>
   payments?: boolean | Prisma.Parcel$paymentsArgs<ExtArgs>
   ledgerEntry?: boolean | Prisma.Parcel$ledgerEntryArgs<ExtArgs>
   _count?: boolean | Prisma.ParcelCountOutputTypeDefaultArgs<ExtArgs>
@@ -3368,6 +3585,7 @@ export type ParcelInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   deliveryRider?: boolean | Prisma.Parcel$deliveryRiderArgs<ExtArgs>
   trackingEvents?: boolean | Prisma.Parcel$trackingEventsArgs<ExtArgs>
   manifestItems?: boolean | Prisma.Parcel$manifestItemsArgs<ExtArgs>
+  notifications?: boolean | Prisma.Parcel$notificationsArgs<ExtArgs>
   payments?: boolean | Prisma.Parcel$paymentsArgs<ExtArgs>
   ledgerEntry?: boolean | Prisma.Parcel$ledgerEntryArgs<ExtArgs>
   _count?: boolean | Prisma.ParcelCountOutputTypeDefaultArgs<ExtArgs>
@@ -3403,6 +3621,7 @@ export type $ParcelPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     deliveryRider: Prisma.$RiderPayload<ExtArgs> | null
     trackingEvents: Prisma.$TrackingEventPayload<ExtArgs>[]
     manifestItems: Prisma.$ManifestParcelPayload<ExtArgs>[]
+    notifications: Prisma.$NotificationPayload<ExtArgs>[]
     payments: Prisma.$PaymentsPayload<ExtArgs> | null
     ledgerEntry: Prisma.$MerchantLedgerEntryPayload<ExtArgs> | null
   }
@@ -3834,6 +4053,7 @@ export interface Prisma__ParcelClient<T, Null = never, ExtArgs extends runtime.T
   deliveryRider<T extends Prisma.Parcel$deliveryRiderArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Parcel$deliveryRiderArgs<ExtArgs>>): Prisma.Prisma__RiderClient<runtime.Types.Result.GetResult<Prisma.$RiderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   trackingEvents<T extends Prisma.Parcel$trackingEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Parcel$trackingEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TrackingEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   manifestItems<T extends Prisma.Parcel$manifestItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Parcel$manifestItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ManifestParcelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  notifications<T extends Prisma.Parcel$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Parcel$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   payments<T extends Prisma.Parcel$paymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Parcel$paymentsArgs<ExtArgs>>): Prisma.Prisma__PaymentsClient<runtime.Types.Result.GetResult<Prisma.$PaymentsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   ledgerEntry<T extends Prisma.Parcel$ledgerEntryArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Parcel$ledgerEntryArgs<ExtArgs>>): Prisma.Prisma__MerchantLedgerEntryClient<runtime.Types.Result.GetResult<Prisma.$MerchantLedgerEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
@@ -4449,6 +4669,30 @@ export type Parcel$manifestItemsArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   distinct?: Prisma.ManifestParcelScalarFieldEnum | Prisma.ManifestParcelScalarFieldEnum[]
+}
+
+/**
+ * Parcel.notifications
+ */
+export type Parcel$notificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Notification
+   */
+  select?: Prisma.NotificationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Notification
+   */
+  omit?: Prisma.NotificationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NotificationInclude<ExtArgs> | null
+  where?: Prisma.NotificationWhereInput
+  orderBy?: Prisma.NotificationOrderByWithRelationInput | Prisma.NotificationOrderByWithRelationInput[]
+  cursor?: Prisma.NotificationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.NotificationScalarFieldEnum | Prisma.NotificationScalarFieldEnum[]
 }
 
 /**

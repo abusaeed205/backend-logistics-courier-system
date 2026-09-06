@@ -1,11 +1,11 @@
 model District {
-  id         String   @id @default(uuid())
-  name       String
+  id   String @id @default(uuid())
+  name String
 
   divisionId String
   division   Division @relation(fields: [divisionId], references: [id], onDelete: Restrict)
 
-  upazilas   Upazila[]
+  upazilas Upazila[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -14,6 +14,5 @@ model District {
 
   @@unique([name, divisionId])
   @@index([divisionId])
-
   @@map("districts")
 }

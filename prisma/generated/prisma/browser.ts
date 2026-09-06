@@ -33,6 +33,11 @@ export type BranchStaff = Prisma.BranchStaffModel
  */
 export type DeliveryZone = Prisma.DeliveryZoneModel
 /**
+ * Model DeviceToken
+ * 
+ */
+export type DeviceToken = Prisma.DeviceTokenModel
+/**
  * Model Manifest
  * 
  */
@@ -52,6 +57,11 @@ export type Merchant = Prisma.MerchantModel
  * 
  */
 export type MerchantLedgerEntry = Prisma.MerchantLedgerEntryModel
+/**
+ * Model Notification
+ * 
+ */
+export type Notification = Prisma.NotificationModel
 /**
  * Model Parcel
  * 

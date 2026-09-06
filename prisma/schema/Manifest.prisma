@@ -1,22 +1,22 @@
 // MANIFEST / TRANSIT (bag of parcels moving between two points)
 
 model Manifest {
-  id                   String          @id @default(uuid())
-  manifestCode         String          @unique // e.g. "MNF-10025"
-  legType              ManifestLegType
-  originBranchId       String
-  originBranch         Branch          @relation("ManifestOriginBranch", fields: [originBranchId], references: [id])
-  destinationBranchId  String
-  destinationBranch    Branch          @relation("ManifestDestinationBranch", fields: [destinationBranchId], references: [id])
-  status               ManifestStatus  @default(OPEN)
+  id                  String          @id @default(uuid())
+  manifestCode        String          @unique // e.g. "MNF-10025"
+  legType             ManifestLegType
+  originBranchId      String
+  originBranch        Branch          @relation("ManifestOriginBranch", fields: [originBranchId], references: [id])
+  destinationBranchId String
+  destinationBranch   Branch          @relation("ManifestDestinationBranch", fields: [destinationBranchId], references: [id])
+  status              ManifestStatus  @default(OPEN)
 
   vehicleNo   String?
   driverName  String?
   driverPhone String?
 
-  closedAt    DateTime?
-  departedAt  DateTime?
-  receivedAt  DateTime?
+  closedAt   DateTime?
+  departedAt DateTime?
+  receivedAt DateTime?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

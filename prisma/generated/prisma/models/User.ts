@@ -262,6 +262,8 @@ export type UserWhereInput = {
   deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  notifications?: Prisma.NotificationListRelationFilter
+  deviceTokens?: Prisma.DeviceTokenListRelationFilter
   merchant?: Prisma.XOR<Prisma.MerchantNullableScalarRelationFilter, Prisma.MerchantWhereInput> | null
   rider?: Prisma.XOR<Prisma.RiderNullableScalarRelationFilter, Prisma.RiderWhereInput> | null
   branchStaff?: Prisma.XOR<Prisma.BranchStaffNullableScalarRelationFilter, Prisma.BranchStaffWhereInput> | null
@@ -284,6 +286,8 @@ export type UserOrderByWithRelationInput = {
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  notifications?: Prisma.NotificationOrderByRelationAggregateInput
+  deviceTokens?: Prisma.DeviceTokenOrderByRelationAggregateInput
   merchant?: Prisma.MerchantOrderByWithRelationInput
   rider?: Prisma.RiderOrderByWithRelationInput
   branchStaff?: Prisma.BranchStaffOrderByWithRelationInput
@@ -309,6 +313,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  notifications?: Prisma.NotificationListRelationFilter
+  deviceTokens?: Prisma.DeviceTokenListRelationFilter
   merchant?: Prisma.XOR<Prisma.MerchantNullableScalarRelationFilter, Prisma.MerchantWhereInput> | null
   rider?: Prisma.XOR<Prisma.RiderNullableScalarRelationFilter, Prisma.RiderWhereInput> | null
   branchStaff?: Prisma.XOR<Prisma.BranchStaffNullableScalarRelationFilter, Prisma.BranchStaffWhereInput> | null
@@ -373,6 +379,8 @@ export type UserCreateInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  deviceTokens?: Prisma.DeviceTokenCreateNestedManyWithoutUserInput
   merchant?: Prisma.MerchantCreateNestedOneWithoutUserInput
   rider?: Prisma.RiderCreateNestedOneWithoutUserInput
   branchStaff?: Prisma.BranchStaffCreateNestedOneWithoutUserInput
@@ -395,6 +403,8 @@ export type UserUncheckedCreateInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  deviceTokens?: Prisma.DeviceTokenUncheckedCreateNestedManyWithoutUserInput
   merchant?: Prisma.MerchantUncheckedCreateNestedOneWithoutUserInput
   rider?: Prisma.RiderUncheckedCreateNestedOneWithoutUserInput
   branchStaff?: Prisma.BranchStaffUncheckedCreateNestedOneWithoutUserInput
@@ -417,6 +427,8 @@ export type UserUpdateInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  deviceTokens?: Prisma.DeviceTokenUpdateManyWithoutUserNestedInput
   merchant?: Prisma.MerchantUpdateOneWithoutUserNestedInput
   rider?: Prisma.RiderUpdateOneWithoutUserNestedInput
   branchStaff?: Prisma.BranchStaffUpdateOneWithoutUserNestedInput
@@ -439,6 +451,8 @@ export type UserUncheckedUpdateInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  deviceTokens?: Prisma.DeviceTokenUncheckedUpdateManyWithoutUserNestedInput
   merchant?: Prisma.MerchantUncheckedUpdateOneWithoutUserNestedInput
   rider?: Prisma.RiderUncheckedUpdateOneWithoutUserNestedInput
   branchStaff?: Prisma.BranchStaffUncheckedUpdateOneWithoutUserNestedInput
@@ -577,6 +591,20 @@ export type UserUpdateOneRequiredWithoutBranchStaffNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutBranchStaffInput, Prisma.UserUpdateWithoutBranchStaffInput>, Prisma.UserUncheckedUpdateWithoutBranchStaffInput>
 }
 
+export type UserCreateNestedOneWithoutDeviceTokensInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDeviceTokensInput, Prisma.UserUncheckedCreateWithoutDeviceTokensInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDeviceTokensInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutDeviceTokensNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDeviceTokensInput, Prisma.UserUncheckedCreateWithoutDeviceTokensInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDeviceTokensInput
+  upsert?: Prisma.UserUpsertWithoutDeviceTokensInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutDeviceTokensInput, Prisma.UserUpdateWithoutDeviceTokensInput>, Prisma.UserUncheckedUpdateWithoutDeviceTokensInput>
+}
+
 export type UserCreateNestedOneWithoutMerchantInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutMerchantInput, Prisma.UserUncheckedCreateWithoutMerchantInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutMerchantInput
@@ -589,6 +617,22 @@ export type UserUpdateOneRequiredWithoutMerchantNestedInput = {
   upsert?: Prisma.UserUpsertWithoutMerchantInput
   connect?: Prisma.UserWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMerchantInput, Prisma.UserUpdateWithoutMerchantInput>, Prisma.UserUncheckedUpdateWithoutMerchantInput>
+}
+
+export type UserCreateNestedOneWithoutNotificationsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutNotificationsInput, Prisma.UserUncheckedCreateWithoutNotificationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutNotificationsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutNotificationsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutNotificationsInput, Prisma.UserUncheckedCreateWithoutNotificationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutNotificationsInput
+  upsert?: Prisma.UserUpsertWithoutNotificationsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutNotificationsInput, Prisma.UserUpdateWithoutNotificationsInput>, Prisma.UserUncheckedUpdateWithoutNotificationsInput>
 }
 
 export type UserCreateNestedOneWithoutRiderInput = {
@@ -629,10 +673,6 @@ export type EnumUserStatusFieldUpdateOperationsInput = {
   set?: $Enums.UserStatus
 }
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
 export type UserCreateWithoutBranchStaffInput = {
   id?: string
   name: string
@@ -649,6 +689,8 @@ export type UserCreateWithoutBranchStaffInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  deviceTokens?: Prisma.DeviceTokenCreateNestedManyWithoutUserInput
   merchant?: Prisma.MerchantCreateNestedOneWithoutUserInput
   rider?: Prisma.RiderCreateNestedOneWithoutUserInput
   scannedEvents?: Prisma.TrackingEventCreateNestedManyWithoutScannedByInput
@@ -670,6 +712,8 @@ export type UserUncheckedCreateWithoutBranchStaffInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  deviceTokens?: Prisma.DeviceTokenUncheckedCreateNestedManyWithoutUserInput
   merchant?: Prisma.MerchantUncheckedCreateNestedOneWithoutUserInput
   rider?: Prisma.RiderUncheckedCreateNestedOneWithoutUserInput
   scannedEvents?: Prisma.TrackingEventUncheckedCreateNestedManyWithoutScannedByInput
@@ -707,6 +751,8 @@ export type UserUpdateWithoutBranchStaffInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  deviceTokens?: Prisma.DeviceTokenUpdateManyWithoutUserNestedInput
   merchant?: Prisma.MerchantUpdateOneWithoutUserNestedInput
   rider?: Prisma.RiderUpdateOneWithoutUserNestedInput
   scannedEvents?: Prisma.TrackingEventUpdateManyWithoutScannedByNestedInput
@@ -728,8 +774,118 @@ export type UserUncheckedUpdateWithoutBranchStaffInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  deviceTokens?: Prisma.DeviceTokenUncheckedUpdateManyWithoutUserNestedInput
   merchant?: Prisma.MerchantUncheckedUpdateOneWithoutUserNestedInput
   rider?: Prisma.RiderUncheckedUpdateOneWithoutUserNestedInput
+  scannedEvents?: Prisma.TrackingEventUncheckedUpdateManyWithoutScannedByNestedInput
+}
+
+export type UserCreateWithoutDeviceTokensInput = {
+  id?: string
+  name: string
+  phone?: string | null
+  email: string
+  password?: string | null
+  image?: string
+  imagepublicId?: string
+  role?: $Enums.UserRole
+  status?: $Enums.UserStatus
+  emailVerified?: boolean
+  needPasswordChange?: boolean
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  merchant?: Prisma.MerchantCreateNestedOneWithoutUserInput
+  rider?: Prisma.RiderCreateNestedOneWithoutUserInput
+  branchStaff?: Prisma.BranchStaffCreateNestedOneWithoutUserInput
+  scannedEvents?: Prisma.TrackingEventCreateNestedManyWithoutScannedByInput
+}
+
+export type UserUncheckedCreateWithoutDeviceTokensInput = {
+  id?: string
+  name: string
+  phone?: string | null
+  email: string
+  password?: string | null
+  image?: string
+  imagepublicId?: string
+  role?: $Enums.UserRole
+  status?: $Enums.UserStatus
+  emailVerified?: boolean
+  needPasswordChange?: boolean
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  merchant?: Prisma.MerchantUncheckedCreateNestedOneWithoutUserInput
+  rider?: Prisma.RiderUncheckedCreateNestedOneWithoutUserInput
+  branchStaff?: Prisma.BranchStaffUncheckedCreateNestedOneWithoutUserInput
+  scannedEvents?: Prisma.TrackingEventUncheckedCreateNestedManyWithoutScannedByInput
+}
+
+export type UserCreateOrConnectWithoutDeviceTokensInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutDeviceTokensInput, Prisma.UserUncheckedCreateWithoutDeviceTokensInput>
+}
+
+export type UserUpsertWithoutDeviceTokensInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutDeviceTokensInput, Prisma.UserUncheckedUpdateWithoutDeviceTokensInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutDeviceTokensInput, Prisma.UserUncheckedCreateWithoutDeviceTokensInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutDeviceTokensInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutDeviceTokensInput, Prisma.UserUncheckedUpdateWithoutDeviceTokensInput>
+}
+
+export type UserUpdateWithoutDeviceTokensInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.StringFieldUpdateOperationsInput | string
+  imagepublicId?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  needPasswordChange?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  merchant?: Prisma.MerchantUpdateOneWithoutUserNestedInput
+  rider?: Prisma.RiderUpdateOneWithoutUserNestedInput
+  branchStaff?: Prisma.BranchStaffUpdateOneWithoutUserNestedInput
+  scannedEvents?: Prisma.TrackingEventUpdateManyWithoutScannedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutDeviceTokensInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.StringFieldUpdateOperationsInput | string
+  imagepublicId?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  needPasswordChange?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  merchant?: Prisma.MerchantUncheckedUpdateOneWithoutUserNestedInput
+  rider?: Prisma.RiderUncheckedUpdateOneWithoutUserNestedInput
+  branchStaff?: Prisma.BranchStaffUncheckedUpdateOneWithoutUserNestedInput
   scannedEvents?: Prisma.TrackingEventUncheckedUpdateManyWithoutScannedByNestedInput
 }
 
@@ -749,6 +905,8 @@ export type UserCreateWithoutMerchantInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  deviceTokens?: Prisma.DeviceTokenCreateNestedManyWithoutUserInput
   rider?: Prisma.RiderCreateNestedOneWithoutUserInput
   branchStaff?: Prisma.BranchStaffCreateNestedOneWithoutUserInput
   scannedEvents?: Prisma.TrackingEventCreateNestedManyWithoutScannedByInput
@@ -770,6 +928,8 @@ export type UserUncheckedCreateWithoutMerchantInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  deviceTokens?: Prisma.DeviceTokenUncheckedCreateNestedManyWithoutUserInput
   rider?: Prisma.RiderUncheckedCreateNestedOneWithoutUserInput
   branchStaff?: Prisma.BranchStaffUncheckedCreateNestedOneWithoutUserInput
   scannedEvents?: Prisma.TrackingEventUncheckedCreateNestedManyWithoutScannedByInput
@@ -807,6 +967,8 @@ export type UserUpdateWithoutMerchantInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  deviceTokens?: Prisma.DeviceTokenUpdateManyWithoutUserNestedInput
   rider?: Prisma.RiderUpdateOneWithoutUserNestedInput
   branchStaff?: Prisma.BranchStaffUpdateOneWithoutUserNestedInput
   scannedEvents?: Prisma.TrackingEventUpdateManyWithoutScannedByNestedInput
@@ -828,6 +990,116 @@ export type UserUncheckedUpdateWithoutMerchantInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  deviceTokens?: Prisma.DeviceTokenUncheckedUpdateManyWithoutUserNestedInput
+  rider?: Prisma.RiderUncheckedUpdateOneWithoutUserNestedInput
+  branchStaff?: Prisma.BranchStaffUncheckedUpdateOneWithoutUserNestedInput
+  scannedEvents?: Prisma.TrackingEventUncheckedUpdateManyWithoutScannedByNestedInput
+}
+
+export type UserCreateWithoutNotificationsInput = {
+  id?: string
+  name: string
+  phone?: string | null
+  email: string
+  password?: string | null
+  image?: string
+  imagepublicId?: string
+  role?: $Enums.UserRole
+  status?: $Enums.UserStatus
+  emailVerified?: boolean
+  needPasswordChange?: boolean
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deviceTokens?: Prisma.DeviceTokenCreateNestedManyWithoutUserInput
+  merchant?: Prisma.MerchantCreateNestedOneWithoutUserInput
+  rider?: Prisma.RiderCreateNestedOneWithoutUserInput
+  branchStaff?: Prisma.BranchStaffCreateNestedOneWithoutUserInput
+  scannedEvents?: Prisma.TrackingEventCreateNestedManyWithoutScannedByInput
+}
+
+export type UserUncheckedCreateWithoutNotificationsInput = {
+  id?: string
+  name: string
+  phone?: string | null
+  email: string
+  password?: string | null
+  image?: string
+  imagepublicId?: string
+  role?: $Enums.UserRole
+  status?: $Enums.UserStatus
+  emailVerified?: boolean
+  needPasswordChange?: boolean
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deviceTokens?: Prisma.DeviceTokenUncheckedCreateNestedManyWithoutUserInput
+  merchant?: Prisma.MerchantUncheckedCreateNestedOneWithoutUserInput
+  rider?: Prisma.RiderUncheckedCreateNestedOneWithoutUserInput
+  branchStaff?: Prisma.BranchStaffUncheckedCreateNestedOneWithoutUserInput
+  scannedEvents?: Prisma.TrackingEventUncheckedCreateNestedManyWithoutScannedByInput
+}
+
+export type UserCreateOrConnectWithoutNotificationsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutNotificationsInput, Prisma.UserUncheckedCreateWithoutNotificationsInput>
+}
+
+export type UserUpsertWithoutNotificationsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutNotificationsInput, Prisma.UserUncheckedUpdateWithoutNotificationsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutNotificationsInput, Prisma.UserUncheckedCreateWithoutNotificationsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutNotificationsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutNotificationsInput, Prisma.UserUncheckedUpdateWithoutNotificationsInput>
+}
+
+export type UserUpdateWithoutNotificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.StringFieldUpdateOperationsInput | string
+  imagepublicId?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  needPasswordChange?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deviceTokens?: Prisma.DeviceTokenUpdateManyWithoutUserNestedInput
+  merchant?: Prisma.MerchantUpdateOneWithoutUserNestedInput
+  rider?: Prisma.RiderUpdateOneWithoutUserNestedInput
+  branchStaff?: Prisma.BranchStaffUpdateOneWithoutUserNestedInput
+  scannedEvents?: Prisma.TrackingEventUpdateManyWithoutScannedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutNotificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.StringFieldUpdateOperationsInput | string
+  imagepublicId?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  needPasswordChange?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deviceTokens?: Prisma.DeviceTokenUncheckedUpdateManyWithoutUserNestedInput
+  merchant?: Prisma.MerchantUncheckedUpdateOneWithoutUserNestedInput
   rider?: Prisma.RiderUncheckedUpdateOneWithoutUserNestedInput
   branchStaff?: Prisma.BranchStaffUncheckedUpdateOneWithoutUserNestedInput
   scannedEvents?: Prisma.TrackingEventUncheckedUpdateManyWithoutScannedByNestedInput
@@ -849,6 +1121,8 @@ export type UserCreateWithoutRiderInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  deviceTokens?: Prisma.DeviceTokenCreateNestedManyWithoutUserInput
   merchant?: Prisma.MerchantCreateNestedOneWithoutUserInput
   branchStaff?: Prisma.BranchStaffCreateNestedOneWithoutUserInput
   scannedEvents?: Prisma.TrackingEventCreateNestedManyWithoutScannedByInput
@@ -870,6 +1144,8 @@ export type UserUncheckedCreateWithoutRiderInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  deviceTokens?: Prisma.DeviceTokenUncheckedCreateNestedManyWithoutUserInput
   merchant?: Prisma.MerchantUncheckedCreateNestedOneWithoutUserInput
   branchStaff?: Prisma.BranchStaffUncheckedCreateNestedOneWithoutUserInput
   scannedEvents?: Prisma.TrackingEventUncheckedCreateNestedManyWithoutScannedByInput
@@ -907,6 +1183,8 @@ export type UserUpdateWithoutRiderInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  deviceTokens?: Prisma.DeviceTokenUpdateManyWithoutUserNestedInput
   merchant?: Prisma.MerchantUpdateOneWithoutUserNestedInput
   branchStaff?: Prisma.BranchStaffUpdateOneWithoutUserNestedInput
   scannedEvents?: Prisma.TrackingEventUpdateManyWithoutScannedByNestedInput
@@ -928,6 +1206,8 @@ export type UserUncheckedUpdateWithoutRiderInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  deviceTokens?: Prisma.DeviceTokenUncheckedUpdateManyWithoutUserNestedInput
   merchant?: Prisma.MerchantUncheckedUpdateOneWithoutUserNestedInput
   branchStaff?: Prisma.BranchStaffUncheckedUpdateOneWithoutUserNestedInput
   scannedEvents?: Prisma.TrackingEventUncheckedUpdateManyWithoutScannedByNestedInput
@@ -949,6 +1229,8 @@ export type UserCreateWithoutScannedEventsInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  deviceTokens?: Prisma.DeviceTokenCreateNestedManyWithoutUserInput
   merchant?: Prisma.MerchantCreateNestedOneWithoutUserInput
   rider?: Prisma.RiderCreateNestedOneWithoutUserInput
   branchStaff?: Prisma.BranchStaffCreateNestedOneWithoutUserInput
@@ -970,6 +1252,8 @@ export type UserUncheckedCreateWithoutScannedEventsInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  deviceTokens?: Prisma.DeviceTokenUncheckedCreateNestedManyWithoutUserInput
   merchant?: Prisma.MerchantUncheckedCreateNestedOneWithoutUserInput
   rider?: Prisma.RiderUncheckedCreateNestedOneWithoutUserInput
   branchStaff?: Prisma.BranchStaffUncheckedCreateNestedOneWithoutUserInput
@@ -1007,6 +1291,8 @@ export type UserUpdateWithoutScannedEventsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  deviceTokens?: Prisma.DeviceTokenUpdateManyWithoutUserNestedInput
   merchant?: Prisma.MerchantUpdateOneWithoutUserNestedInput
   rider?: Prisma.RiderUpdateOneWithoutUserNestedInput
   branchStaff?: Prisma.BranchStaffUpdateOneWithoutUserNestedInput
@@ -1028,6 +1314,8 @@ export type UserUncheckedUpdateWithoutScannedEventsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  deviceTokens?: Prisma.DeviceTokenUncheckedUpdateManyWithoutUserNestedInput
   merchant?: Prisma.MerchantUncheckedUpdateOneWithoutUserNestedInput
   rider?: Prisma.RiderUncheckedUpdateOneWithoutUserNestedInput
   branchStaff?: Prisma.BranchStaffUncheckedUpdateOneWithoutUserNestedInput
@@ -1039,10 +1327,14 @@ export type UserUncheckedUpdateWithoutScannedEventsInput = {
  */
 
 export type UserCountOutputType = {
+  notifications: number
+  deviceTokens: number
   scannedEvents: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
+  deviceTokens?: boolean | UserCountOutputTypeCountDeviceTokensArgs
   scannedEvents?: boolean | UserCountOutputTypeCountScannedEventsArgs
 }
 
@@ -1054,6 +1346,20 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
    * Select specific fields to fetch from the UserCountOutputType
    */
   select?: Prisma.UserCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountNotificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.NotificationWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountDeviceTokensArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DeviceTokenWhereInput
 }
 
 /**
@@ -1080,6 +1386,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   deletedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
+  deviceTokens?: boolean | Prisma.User$deviceTokensArgs<ExtArgs>
   merchant?: boolean | Prisma.User$merchantArgs<ExtArgs>
   rider?: boolean | Prisma.User$riderArgs<ExtArgs>
   branchStaff?: boolean | Prisma.User$branchStaffArgs<ExtArgs>
@@ -1143,6 +1451,8 @@ export type UserSelectScalar = {
 
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "phone" | "email" | "password" | "image" | "imagepublicId" | "role" | "status" | "emailVerified" | "needPasswordChange" | "isDeleted" | "deletedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
+  deviceTokens?: boolean | Prisma.User$deviceTokensArgs<ExtArgs>
   merchant?: boolean | Prisma.User$merchantArgs<ExtArgs>
   rider?: boolean | Prisma.User$riderArgs<ExtArgs>
   branchStaff?: boolean | Prisma.User$branchStaffArgs<ExtArgs>
@@ -1155,6 +1465,8 @@ export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
+    notifications: Prisma.$NotificationPayload<ExtArgs>[]
+    deviceTokens: Prisma.$DeviceTokenPayload<ExtArgs>[]
     merchant: Prisma.$MerchantPayload<ExtArgs> | null
     rider: Prisma.$RiderPayload<ExtArgs> | null
     branchStaff: Prisma.$BranchStaffPayload<ExtArgs> | null
@@ -1570,6 +1882,8 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  notifications<T extends Prisma.User$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  deviceTokens<T extends Prisma.User$deviceTokensArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$deviceTokensArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DeviceTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   merchant<T extends Prisma.User$merchantArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$merchantArgs<ExtArgs>>): Prisma.Prisma__MerchantClient<runtime.Types.Result.GetResult<Prisma.$MerchantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   rider<T extends Prisma.User$riderArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$riderArgs<ExtArgs>>): Prisma.Prisma__RiderClient<runtime.Types.Result.GetResult<Prisma.$RiderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   branchStaff<T extends Prisma.User$branchStaffArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$branchStaffArgs<ExtArgs>>): Prisma.Prisma__BranchStaffClient<runtime.Types.Result.GetResult<Prisma.$BranchStaffPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
@@ -2008,6 +2322,54 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Limit how many Users to delete.
    */
   limit?: number
+}
+
+/**
+ * User.notifications
+ */
+export type User$notificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Notification
+   */
+  select?: Prisma.NotificationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Notification
+   */
+  omit?: Prisma.NotificationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NotificationInclude<ExtArgs> | null
+  where?: Prisma.NotificationWhereInput
+  orderBy?: Prisma.NotificationOrderByWithRelationInput | Prisma.NotificationOrderByWithRelationInput[]
+  cursor?: Prisma.NotificationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.NotificationScalarFieldEnum | Prisma.NotificationScalarFieldEnum[]
+}
+
+/**
+ * User.deviceTokens
+ */
+export type User$deviceTokensArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DeviceToken
+   */
+  select?: Prisma.DeviceTokenSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DeviceToken
+   */
+  omit?: Prisma.DeviceTokenOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DeviceTokenInclude<ExtArgs> | null
+  where?: Prisma.DeviceTokenWhereInput
+  orderBy?: Prisma.DeviceTokenOrderByWithRelationInput | Prisma.DeviceTokenOrderByWithRelationInput[]
+  cursor?: Prisma.DeviceTokenWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DeviceTokenScalarFieldEnum | Prisma.DeviceTokenScalarFieldEnum[]
 }
 
 /**

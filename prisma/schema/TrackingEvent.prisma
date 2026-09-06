@@ -1,17 +1,17 @@
 // TrackingEvent হলো Parcel-এর status/scan-এর এমন একটি স্থায়ী history, যেটা একবার তৈরি হলে আর পরিবর্তন বা delete করা হবে না। Parcel কোথায় কোথায় গেছে এবং কখন কী ঘটেছে—তার আসল রেকর্ড এটিই।
 model TrackingEvent {
-  id       String       @id @default(uuid())
+  id       String @id @default(uuid())
   parcelId String
-  parcel   Parcel       @relation(fields: [parcelId], references: [id], onDelete: Cascade)
+  parcel   Parcel @relation(fields: [parcelId], references: [id], onDelete: Cascade)
 
-  status   ParcelStatus
-  note     String? // e.g. failure reason, free-text remark
+  status ParcelStatus
+  note   String? // e.g. failure reason, free-text remark
 
-  branchId String? // branch/hub where this scan happened, if applicable
-  branch   Branch? @relation(fields: [branchId], references: [id])
-  actorType TrackingEventActorType
+  branchId    String? // branch/hub where this scan happened, if applicable
+  branch      Branch?                @relation(fields: [branchId], references: [id])
+  actorType   TrackingEventActorType
   scannedById String? // User.id of rider/agent who performed the scan
-  scannedBy   User?   @relation("EventScannedBy", fields: [scannedById], references: [id])
+  scannedBy   User?                  @relation("EventScannedBy", fields: [scannedById], references: [id])
 
   createdAt DateTime @default(now())
 

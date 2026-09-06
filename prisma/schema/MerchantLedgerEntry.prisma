@@ -5,7 +5,7 @@ model MerchantLedgerEntry {
   merchant   Merchant @relation(fields: [merchantId], references: [id])
 
   parcelId String? @unique
-  parcel   Parcel?  @relation(fields: [parcelId], references: [id])
+  parcel   Parcel? @relation(fields: [parcelId], references: [id])
 
   settlementId String?
   settlement   Settlement? @relation(fields: [settlementId], references: [id])
@@ -17,9 +17,4 @@ model MerchantLedgerEntry {
 
   @@index([merchantId])
   @@map("merchant_ledger_entries")
-}
-
-enum LedgerEntryType {
-  CREDIT
-  DEBIT
 }

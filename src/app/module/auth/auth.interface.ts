@@ -20,3 +20,15 @@ export interface IRequestUserProfile {
 	name: string;
 	role: UserRole;
 }
+
+export interface Iforgetpassword {
+	email: string;
+}
+
+// Service এ এগুলো ব্যবহার করা হয়েছে
+export interface IResetPasswordPayload {
+	email: string;
+	newPassword: string;
+	otp: string;
+}
+

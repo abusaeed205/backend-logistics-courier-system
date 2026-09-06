@@ -3,7 +3,6 @@ import { AuthController } from "./auth.controller";
 import { validateRequest } from "../../middleware/zodValidateRequest";
 import { ZodUserValidation } from "./auth.validation";
 import { auth } from "../../middleware/checkAuth";
-import { UserRole } from "../../../../prisma/generated/prisma/enums";
 
 
 const routers=Router()
@@ -16,6 +15,8 @@ routers.post("/login",AuthController.loginUser)
 routers.get("/me",auth(),AuthController.getMe)
 
 routers.post("/refresh-token", AuthController.refreshToken);
+routers.post("/forgetpassword",validateRequest(ZodUserValidation.forgetPasswordZodSchema),AuthController.forgetpassword)
+routers.post("/reset-password",validateRequest(ZodUserValidation.resetPasswordZodSchema),AuthController.resetpassword)
 
 
 export const AuthRouters=routers

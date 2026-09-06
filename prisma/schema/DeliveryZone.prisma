@@ -1,11 +1,11 @@
 // Delivery zone = a set of thana/areas mapped to a delivery branch, used to
 // auto-assign delivery riders.
 model DeliveryZone {
-  id       String @id @default(uuid())
+  id       String  @id @default(uuid())
   branchId String
-  branch   Branch @relation(fields: [branchId], references: [id])
+  branch   Branch  @relation(fields: [branchId], references: [id])
   name     String // e.g. "Daudkandi Zone A"
-  unions Union[] @relation("ZoneUnions") // list of thana/area names covered
+  unions   Union[] @relation("ZoneUnions") // list of thana/area names covered
 
   riders Rider[] @relation("RiderZones")
 

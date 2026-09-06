@@ -1,11 +1,11 @@
 model BranchStaff {
-  id       String @id @default(uuid())
-  userId   String @unique
-  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  branchId String
-  branch   Branch @relation(fields: [branchId], references: [id])
+  id          String   @id @default(uuid())
+  userId      String   @unique
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  branchId    String
+  branch      Branch   @relation(fields: [branchId], references: [id])
   designation String? // e.g. "Branch Agent", "Hub Agent"
-  createdAt DateTime @default(now())
+  createdAt   DateTime @default(now())
 
   @@index([branchId])
   @@map("branch_staff")
