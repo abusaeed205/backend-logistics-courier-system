@@ -17,6 +17,27 @@ const createParcelZodSchema = z.object({
   }),
 });
 
+
+const updateParcelZodSchema = z.object({
+  body: z.object({
+    recipientName: z.string().optional(),
+    recipientPhone: z.string().optional(),
+    recipientAddress: z.string().optional(),
+    recipientDistrict: z.string().optional(),
+    recipientThana: z.string().optional(),
+    parcelType: z.nativeEnum(ParcelType).optional(),
+    weightKg: z.number().positive().optional(),
+    description: z.string().optional(),
+  }),
+});
+
+
+
+
+
+
+
 export const ParcelValidation = {
   createParcelZodSchema,
+  updateParcelZodSchema 
 };

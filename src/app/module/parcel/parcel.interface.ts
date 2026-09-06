@@ -1,6 +1,7 @@
 import { ParcelType, PaymentType } from "../../../../prisma/generated/prisma/enums";
 
 
+
 export interface ICreateParcel {
   recipientName: string;
   recipientPhone: string;
@@ -15,16 +16,25 @@ export interface ICreateParcel {
   codAmount?: number;
   deliveryCharge: number;
 }
-export interface ICreateParcel {
-  recipientName: string;
-  recipientPhone: string;
-  recipientAddress: string;
-  recipientDistrict: string;
+
+export interface IUpdateParcel {
+  recipientName?: string;
+  recipientPhone?: string;
+  recipientAddress?: string;
+  recipientDistrict?: string;
   recipientThana?: string;
   parcelType?: ParcelType;
-  weightKg: number;
+  weightKg?: number;
   description?: string;
-  paymentType?: PaymentType;
-  codAmount?: number;
-  deliveryCharge: number;
+}
+
+
+
+
+export interface IGetMyParcel {
+  status?: string;
+  page?: string;
+  limit?: string;
+  sortBy?: string;
+  sortOrder?: "asc" | "desc";
 }

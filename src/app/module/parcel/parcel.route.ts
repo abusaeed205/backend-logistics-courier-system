@@ -14,4 +14,33 @@ router.post(
   ParcelController.createParcel,
 );
 
+router.get(
+  "/my-parcels",
+  auth(UserRole.MERCHANT),
+  ParcelController.getMyParcels,
+);
+
+router.get(
+  "/:id",
+  auth(UserRole.MERCHANT),
+  ParcelController.getSingleParcel,
+);
+
+router.patch(
+  "/:id",
+  auth(UserRole.MERCHANT),
+  validateRequest(ParcelValidation.updateParcelZodSchema),
+  ParcelController.updateParcel,
+);
+
+router.patch(
+  "/:id/cancel",
+  auth(UserRole.MERCHANT),
+  ParcelController.cancelParcel,
+);
+
+
+
+
+
 export const ParcelRouters = router;
