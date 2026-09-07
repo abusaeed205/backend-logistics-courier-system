@@ -58,6 +58,7 @@ export type RiderAvailability = (typeof RiderAvailability)[keyof typeof RiderAva
 
 
 export const ParcelStatus = {
+  CREATED: 'CREATED',
   PICKUP_REQUESTED: 'PICKUP_REQUESTED',
   RIDER_ASSIGNED: 'RIDER_ASSIGNED',
   PICKED_UP: 'PICKED_UP',

@@ -185,6 +185,7 @@ export type UpazilaWhereInput = {
   district?: Prisma.XOR<Prisma.DistrictScalarRelationFilter, Prisma.DistrictWhereInput>
   unions?: Prisma.UnionListRelationFilter
   branches?: Prisma.BranchListRelationFilter
+  merchant?: Prisma.MerchantListRelationFilter
 }
 
 export type UpazilaOrderByWithRelationInput = {
@@ -196,6 +197,7 @@ export type UpazilaOrderByWithRelationInput = {
   district?: Prisma.DistrictOrderByWithRelationInput
   unions?: Prisma.UnionOrderByRelationAggregateInput
   branches?: Prisma.BranchOrderByRelationAggregateInput
+  merchant?: Prisma.MerchantOrderByRelationAggregateInput
 }
 
 export type UpazilaWhereUniqueInput = Prisma.AtLeast<{
@@ -211,6 +213,7 @@ export type UpazilaWhereUniqueInput = Prisma.AtLeast<{
   district?: Prisma.XOR<Prisma.DistrictScalarRelationFilter, Prisma.DistrictWhereInput>
   unions?: Prisma.UnionListRelationFilter
   branches?: Prisma.BranchListRelationFilter
+  merchant?: Prisma.MerchantListRelationFilter
 }, "id" | "name_districtId">
 
 export type UpazilaOrderByWithAggregationInput = {
@@ -243,6 +246,7 @@ export type UpazilaCreateInput = {
   district: Prisma.DistrictCreateNestedOneWithoutUpazilasInput
   unions?: Prisma.UnionCreateNestedManyWithoutUpazilaInput
   branches?: Prisma.BranchCreateNestedManyWithoutUpazilaInput
+  merchant?: Prisma.MerchantCreateNestedManyWithoutUpazilaInput
 }
 
 export type UpazilaUncheckedCreateInput = {
@@ -253,6 +257,7 @@ export type UpazilaUncheckedCreateInput = {
   updatedAt?: Date | string
   unions?: Prisma.UnionUncheckedCreateNestedManyWithoutUpazilaInput
   branches?: Prisma.BranchUncheckedCreateNestedManyWithoutUpazilaInput
+  merchant?: Prisma.MerchantUncheckedCreateNestedManyWithoutUpazilaInput
 }
 
 export type UpazilaUpdateInput = {
@@ -263,6 +268,7 @@ export type UpazilaUpdateInput = {
   district?: Prisma.DistrictUpdateOneRequiredWithoutUpazilasNestedInput
   unions?: Prisma.UnionUpdateManyWithoutUpazilaNestedInput
   branches?: Prisma.BranchUpdateManyWithoutUpazilaNestedInput
+  merchant?: Prisma.MerchantUpdateManyWithoutUpazilaNestedInput
 }
 
 export type UpazilaUncheckedUpdateInput = {
@@ -273,6 +279,7 @@ export type UpazilaUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   unions?: Prisma.UnionUncheckedUpdateManyWithoutUpazilaNestedInput
   branches?: Prisma.BranchUncheckedUpdateManyWithoutUpazilaNestedInput
+  merchant?: Prisma.MerchantUncheckedUpdateManyWithoutUpazilaNestedInput
 }
 
 export type UpazilaCreateManyInput = {
@@ -301,6 +308,11 @@ export type UpazilaUncheckedUpdateManyInput = {
 export type UpazilaScalarRelationFilter = {
   is?: Prisma.UpazilaWhereInput
   isNot?: Prisma.UpazilaWhereInput
+}
+
+export type UpazilaNullableScalarRelationFilter = {
+  is?: Prisma.UpazilaWhereInput | null
+  isNot?: Prisma.UpazilaWhereInput | null
 }
 
 export type UpazilaListRelationFilter = {
@@ -354,6 +366,22 @@ export type UpazilaUpdateOneRequiredWithoutBranchesNestedInput = {
   upsert?: Prisma.UpazilaUpsertWithoutBranchesInput
   connect?: Prisma.UpazilaWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.UpazilaUpdateToOneWithWhereWithoutBranchesInput, Prisma.UpazilaUpdateWithoutBranchesInput>, Prisma.UpazilaUncheckedUpdateWithoutBranchesInput>
+}
+
+export type UpazilaCreateNestedOneWithoutMerchantInput = {
+  create?: Prisma.XOR<Prisma.UpazilaCreateWithoutMerchantInput, Prisma.UpazilaUncheckedCreateWithoutMerchantInput>
+  connectOrCreate?: Prisma.UpazilaCreateOrConnectWithoutMerchantInput
+  connect?: Prisma.UpazilaWhereUniqueInput
+}
+
+export type UpazilaUpdateOneWithoutMerchantNestedInput = {
+  create?: Prisma.XOR<Prisma.UpazilaCreateWithoutMerchantInput, Prisma.UpazilaUncheckedCreateWithoutMerchantInput>
+  connectOrCreate?: Prisma.UpazilaCreateOrConnectWithoutMerchantInput
+  upsert?: Prisma.UpazilaUpsertWithoutMerchantInput
+  disconnect?: Prisma.UpazilaWhereInput | boolean
+  delete?: Prisma.UpazilaWhereInput | boolean
+  connect?: Prisma.UpazilaWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UpazilaUpdateToOneWithWhereWithoutMerchantInput, Prisma.UpazilaUpdateWithoutMerchantInput>, Prisma.UpazilaUncheckedUpdateWithoutMerchantInput>
 }
 
 export type UpazilaCreateNestedManyWithoutDistrictInput = {
@@ -419,6 +447,7 @@ export type UpazilaCreateWithoutBranchesInput = {
   updatedAt?: Date | string
   district: Prisma.DistrictCreateNestedOneWithoutUpazilasInput
   unions?: Prisma.UnionCreateNestedManyWithoutUpazilaInput
+  merchant?: Prisma.MerchantCreateNestedManyWithoutUpazilaInput
 }
 
 export type UpazilaUncheckedCreateWithoutBranchesInput = {
@@ -428,6 +457,7 @@ export type UpazilaUncheckedCreateWithoutBranchesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   unions?: Prisma.UnionUncheckedCreateNestedManyWithoutUpazilaInput
+  merchant?: Prisma.MerchantUncheckedCreateNestedManyWithoutUpazilaInput
 }
 
 export type UpazilaCreateOrConnectWithoutBranchesInput = {
@@ -453,6 +483,7 @@ export type UpazilaUpdateWithoutBranchesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   district?: Prisma.DistrictUpdateOneRequiredWithoutUpazilasNestedInput
   unions?: Prisma.UnionUpdateManyWithoutUpazilaNestedInput
+  merchant?: Prisma.MerchantUpdateManyWithoutUpazilaNestedInput
 }
 
 export type UpazilaUncheckedUpdateWithoutBranchesInput = {
@@ -462,6 +493,63 @@ export type UpazilaUncheckedUpdateWithoutBranchesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   unions?: Prisma.UnionUncheckedUpdateManyWithoutUpazilaNestedInput
+  merchant?: Prisma.MerchantUncheckedUpdateManyWithoutUpazilaNestedInput
+}
+
+export type UpazilaCreateWithoutMerchantInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  district: Prisma.DistrictCreateNestedOneWithoutUpazilasInput
+  unions?: Prisma.UnionCreateNestedManyWithoutUpazilaInput
+  branches?: Prisma.BranchCreateNestedManyWithoutUpazilaInput
+}
+
+export type UpazilaUncheckedCreateWithoutMerchantInput = {
+  id?: string
+  name: string
+  districtId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  unions?: Prisma.UnionUncheckedCreateNestedManyWithoutUpazilaInput
+  branches?: Prisma.BranchUncheckedCreateNestedManyWithoutUpazilaInput
+}
+
+export type UpazilaCreateOrConnectWithoutMerchantInput = {
+  where: Prisma.UpazilaWhereUniqueInput
+  create: Prisma.XOR<Prisma.UpazilaCreateWithoutMerchantInput, Prisma.UpazilaUncheckedCreateWithoutMerchantInput>
+}
+
+export type UpazilaUpsertWithoutMerchantInput = {
+  update: Prisma.XOR<Prisma.UpazilaUpdateWithoutMerchantInput, Prisma.UpazilaUncheckedUpdateWithoutMerchantInput>
+  create: Prisma.XOR<Prisma.UpazilaCreateWithoutMerchantInput, Prisma.UpazilaUncheckedCreateWithoutMerchantInput>
+  where?: Prisma.UpazilaWhereInput
+}
+
+export type UpazilaUpdateToOneWithWhereWithoutMerchantInput = {
+  where?: Prisma.UpazilaWhereInput
+  data: Prisma.XOR<Prisma.UpazilaUpdateWithoutMerchantInput, Prisma.UpazilaUncheckedUpdateWithoutMerchantInput>
+}
+
+export type UpazilaUpdateWithoutMerchantInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  district?: Prisma.DistrictUpdateOneRequiredWithoutUpazilasNestedInput
+  unions?: Prisma.UnionUpdateManyWithoutUpazilaNestedInput
+  branches?: Prisma.BranchUpdateManyWithoutUpazilaNestedInput
+}
+
+export type UpazilaUncheckedUpdateWithoutMerchantInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  districtId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  unions?: Prisma.UnionUncheckedUpdateManyWithoutUpazilaNestedInput
+  branches?: Prisma.BranchUncheckedUpdateManyWithoutUpazilaNestedInput
 }
 
 export type UpazilaCreateWithoutDistrictInput = {
@@ -471,6 +559,7 @@ export type UpazilaCreateWithoutDistrictInput = {
   updatedAt?: Date | string
   unions?: Prisma.UnionCreateNestedManyWithoutUpazilaInput
   branches?: Prisma.BranchCreateNestedManyWithoutUpazilaInput
+  merchant?: Prisma.MerchantCreateNestedManyWithoutUpazilaInput
 }
 
 export type UpazilaUncheckedCreateWithoutDistrictInput = {
@@ -480,6 +569,7 @@ export type UpazilaUncheckedCreateWithoutDistrictInput = {
   updatedAt?: Date | string
   unions?: Prisma.UnionUncheckedCreateNestedManyWithoutUpazilaInput
   branches?: Prisma.BranchUncheckedCreateNestedManyWithoutUpazilaInput
+  merchant?: Prisma.MerchantUncheckedCreateNestedManyWithoutUpazilaInput
 }
 
 export type UpazilaCreateOrConnectWithoutDistrictInput = {
@@ -526,6 +616,7 @@ export type UpazilaCreateWithoutUnionsInput = {
   updatedAt?: Date | string
   district: Prisma.DistrictCreateNestedOneWithoutUpazilasInput
   branches?: Prisma.BranchCreateNestedManyWithoutUpazilaInput
+  merchant?: Prisma.MerchantCreateNestedManyWithoutUpazilaInput
 }
 
 export type UpazilaUncheckedCreateWithoutUnionsInput = {
@@ -535,6 +626,7 @@ export type UpazilaUncheckedCreateWithoutUnionsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   branches?: Prisma.BranchUncheckedCreateNestedManyWithoutUpazilaInput
+  merchant?: Prisma.MerchantUncheckedCreateNestedManyWithoutUpazilaInput
 }
 
 export type UpazilaCreateOrConnectWithoutUnionsInput = {
@@ -560,6 +652,7 @@ export type UpazilaUpdateWithoutUnionsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   district?: Prisma.DistrictUpdateOneRequiredWithoutUpazilasNestedInput
   branches?: Prisma.BranchUpdateManyWithoutUpazilaNestedInput
+  merchant?: Prisma.MerchantUpdateManyWithoutUpazilaNestedInput
 }
 
 export type UpazilaUncheckedUpdateWithoutUnionsInput = {
@@ -569,6 +662,7 @@ export type UpazilaUncheckedUpdateWithoutUnionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   branches?: Prisma.BranchUncheckedUpdateManyWithoutUpazilaNestedInput
+  merchant?: Prisma.MerchantUncheckedUpdateManyWithoutUpazilaNestedInput
 }
 
 export type UpazilaCreateManyDistrictInput = {
@@ -585,6 +679,7 @@ export type UpazilaUpdateWithoutDistrictInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   unions?: Prisma.UnionUpdateManyWithoutUpazilaNestedInput
   branches?: Prisma.BranchUpdateManyWithoutUpazilaNestedInput
+  merchant?: Prisma.MerchantUpdateManyWithoutUpazilaNestedInput
 }
 
 export type UpazilaUncheckedUpdateWithoutDistrictInput = {
@@ -594,6 +689,7 @@ export type UpazilaUncheckedUpdateWithoutDistrictInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   unions?: Prisma.UnionUncheckedUpdateManyWithoutUpazilaNestedInput
   branches?: Prisma.BranchUncheckedUpdateManyWithoutUpazilaNestedInput
+  merchant?: Prisma.MerchantUncheckedUpdateManyWithoutUpazilaNestedInput
 }
 
 export type UpazilaUncheckedUpdateManyWithoutDistrictInput = {
@@ -611,11 +707,13 @@ export type UpazilaUncheckedUpdateManyWithoutDistrictInput = {
 export type UpazilaCountOutputType = {
   unions: number
   branches: number
+  merchant: number
 }
 
 export type UpazilaCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   unions?: boolean | UpazilaCountOutputTypeCountUnionsArgs
   branches?: boolean | UpazilaCountOutputTypeCountBranchesArgs
+  merchant?: boolean | UpazilaCountOutputTypeCountMerchantArgs
 }
 
 /**
@@ -642,6 +740,13 @@ export type UpazilaCountOutputTypeCountBranchesArgs<ExtArgs extends runtime.Type
   where?: Prisma.BranchWhereInput
 }
 
+/**
+ * UpazilaCountOutputType without action
+ */
+export type UpazilaCountOutputTypeCountMerchantArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MerchantWhereInput
+}
+
 
 export type UpazilaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -652,6 +757,7 @@ export type UpazilaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   district?: boolean | Prisma.DistrictDefaultArgs<ExtArgs>
   unions?: boolean | Prisma.Upazila$unionsArgs<ExtArgs>
   branches?: boolean | Prisma.Upazila$branchesArgs<ExtArgs>
+  merchant?: boolean | Prisma.Upazila$merchantArgs<ExtArgs>
   _count?: boolean | Prisma.UpazilaCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["upazila"]>
 
@@ -686,6 +792,7 @@ export type UpazilaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   district?: boolean | Prisma.DistrictDefaultArgs<ExtArgs>
   unions?: boolean | Prisma.Upazila$unionsArgs<ExtArgs>
   branches?: boolean | Prisma.Upazila$branchesArgs<ExtArgs>
+  merchant?: boolean | Prisma.Upazila$merchantArgs<ExtArgs>
   _count?: boolean | Prisma.UpazilaCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UpazilaIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -701,6 +808,7 @@ export type $UpazilaPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     district: Prisma.$DistrictPayload<ExtArgs>
     unions: Prisma.$UnionPayload<ExtArgs>[]
     branches: Prisma.$BranchPayload<ExtArgs>[]
+    merchant: Prisma.$MerchantPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1105,6 +1213,7 @@ export interface Prisma__UpazilaClient<T, Null = never, ExtArgs extends runtime.
   district<T extends Prisma.DistrictDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DistrictDefaultArgs<ExtArgs>>): Prisma.Prisma__DistrictClient<runtime.Types.Result.GetResult<Prisma.$DistrictPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   unions<T extends Prisma.Upazila$unionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Upazila$unionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UnionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   branches<T extends Prisma.Upazila$branchesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Upazila$branchesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  merchant<T extends Prisma.Upazila$merchantArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Upazila$merchantArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MerchantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1585,6 +1694,30 @@ export type Upazila$branchesArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   distinct?: Prisma.BranchScalarFieldEnum | Prisma.BranchScalarFieldEnum[]
+}
+
+/**
+ * Upazila.merchant
+ */
+export type Upazila$merchantArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Merchant
+   */
+  select?: Prisma.MerchantSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Merchant
+   */
+  omit?: Prisma.MerchantOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MerchantInclude<ExtArgs> | null
+  where?: Prisma.MerchantWhereInput
+  orderBy?: Prisma.MerchantOrderByWithRelationInput | Prisma.MerchantOrderByWithRelationInput[]
+  cursor?: Prisma.MerchantWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MerchantScalarFieldEnum | Prisma.MerchantScalarFieldEnum[]
 }
 
 /**

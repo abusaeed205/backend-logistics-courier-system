@@ -1966,12 +1966,13 @@ export const MerchantScalarFieldEnum = {
   userId: 'userId',
   businessName: 'businessName',
   pickupAddress: 'pickupAddress',
-  district: 'district',
   thana: 'thana',
   balance: 'balance',
   defaultDeliveryCharge: 'defaultDeliveryCharge',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  districtId: 'districtId',
+  upazilaId: 'upazilaId'
 } as const
 
 export type MerchantScalarFieldEnum = (typeof MerchantScalarFieldEnum)[keyof typeof MerchantScalarFieldEnum]

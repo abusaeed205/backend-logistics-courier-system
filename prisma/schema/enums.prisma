@@ -36,6 +36,7 @@ enum RiderAvailability {
 }
 
 enum ParcelStatus {
+  CREATED
   PICKUP_REQUESTED
   RIDER_ASSIGNED
   PICKED_UP

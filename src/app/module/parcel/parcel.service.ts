@@ -10,6 +10,9 @@ const generateTrackingCode = () => {
   return `PCL-${Date.now()}-${crypto.randomInt(1000, 9999)}`;
 };
 
+
+// ------------------- Create Parcel -------------------
+
 const createParcel = async (merchantUserId: string, payload: ICreateParcel) => {
   // লগইন করা user থেকে merchant profile বের করা
   const merchant = await prisma.merchant.findUnique({
@@ -44,6 +47,8 @@ const createParcel = async (merchantUserId: string, payload: ICreateParcel) => {
 
   return result;
 };
+
+// ------------------- get my Parcel -------------------
 
 const getMyParcels = async(marchantUserId: string,query: IGetMyParcel) => {
    // পেজিনেশন
@@ -102,6 +107,7 @@ const getMyParcels = async(marchantUserId: string,query: IGetMyParcel) => {
   };
 };
 
+// ------------------- get single Parcel -------------------
 
 const getSingleParcel= async(marchantUserId: string,parcelId: string) => {
    const merchant=await prisma.merchant.findUnique({
@@ -141,13 +147,14 @@ const getSingleParcel= async(marchantUserId: string,parcelId: string) => {
 
 };
 
-
 // ------------------- Update Parcel -------------------
 const updateParcel = async (
   merchantUserId: string,
   parcelId: string,
   payload: IUpdateParcel,
 ) => {
+
+  // ১. Merchant profile খুঁজছি
   const merchant = await prisma.merchant.findUnique({
     where: { userId: merchantUserId },
   });
@@ -156,6 +163,7 @@ const updateParcel = async (
     throw new AppError(httpstatus.NOT_FOUND, "Merchant profile not found");
   }
 
+   // ২. Parcel টি এই Merchant-এর কিনা check করছি
   const parcel = await prisma.parcel.findFirst({
     where: { id: parcelId, merchantId: merchant.id },
   });
@@ -164,17 +172,17 @@ const updateParcel = async (
     throw new AppError(httpstatus.NOT_FOUND, "Parcel not found");
   }
 
-  // pickup হয়ে যাওয়ার পর recipient/parcel details বদলানো যাবে না
+  //৩.pickup হয়ে যাওয়ার পর recipient/parcel details বদলানো যাবে না
   if (parcel.currentStatus !== "PICKUP_REQUESTED") {
     throw new AppError(
       httpstatus.BAD_REQUEST,
       "Parcel can only be updated before pickup",
     );
   }
-
+   // ৪. Parcel update
   const result = await prisma.parcel.update({
     where: { id: parcelId },
-    data: payload,
+    data: payload, //interface IUpdateParcel থেকে আসছে
   });
 
   return result;
@@ -182,6 +190,7 @@ const updateParcel = async (
 
 // ------------------- Cancel Parcel -------------------
 const cancelParcel = async (merchantUserId: string, parcelId: string) => {
+  // ১. Merchant profile খুঁজছি
   const merchant = await prisma.merchant.findUnique({
     where: { userId: merchantUserId },
   });
@@ -190,6 +199,7 @@ const cancelParcel = async (merchantUserId: string, parcelId: string) => {
     throw new AppError(httpstatus.NOT_FOUND, "Merchant profile not found");
   }
 
+  // ২. Parcel টি এই Merchant-এর কিনা check করছি
   const parcel = await prisma.parcel.findFirst({
     where: { id: parcelId, merchantId: merchant.id },
   });
@@ -202,13 +212,16 @@ const cancelParcel = async (merchantUserId: string, parcelId: string) => {
     throw new AppError(httpstatus.BAD_REQUEST, "Parcel is already cancelled");
   }
 
-  // pickup হয়ে যাওয়ার পর merchant নিজে cancel করতে পারবে না
-  if (parcel.currentStatus !== "PICKUP_REQUESTED") {
-    throw new AppError(
-      httpstatus.BAD_REQUEST,
-      "Parcel can only be cancelled before pickup",
-    );
-  }
+  // ৩. pickup হয়ে যাওয়ার পর merchant নিজে cancel করতে পারবে না
+  if (
+  parcel.currentStatus !== "CREATED" &&
+  parcel.currentStatus !== "PICKUP_REQUESTED"
+) {
+  throw new AppError(
+    httpstatus.BAD_REQUEST,
+    "Parcel can only be cancelled before pickup",
+  );
+}
 
   const result = await prisma.parcel.update({
     where: { id: parcelId },

@@ -41,12 +41,13 @@ export type MerchantMinAggregateOutputType = {
   userId: string | null
   businessName: string | null
   pickupAddress: string | null
-  district: string | null
   thana: string | null
   balance: runtime.Decimal | null
   defaultDeliveryCharge: runtime.Decimal | null
   createdAt: Date | null
   updatedAt: Date | null
+  districtId: string | null
+  upazilaId: string | null
 }
 
 export type MerchantMaxAggregateOutputType = {
@@ -54,12 +55,13 @@ export type MerchantMaxAggregateOutputType = {
   userId: string | null
   businessName: string | null
   pickupAddress: string | null
-  district: string | null
   thana: string | null
   balance: runtime.Decimal | null
   defaultDeliveryCharge: runtime.Decimal | null
   createdAt: Date | null
   updatedAt: Date | null
+  districtId: string | null
+  upazilaId: string | null
 }
 
 export type MerchantCountAggregateOutputType = {
@@ -67,12 +69,13 @@ export type MerchantCountAggregateOutputType = {
   userId: number
   businessName: number
   pickupAddress: number
-  district: number
   thana: number
   balance: number
   defaultDeliveryCharge: number
   createdAt: number
   updatedAt: number
+  districtId: number
+  upazilaId: number
   _all: number
 }
 
@@ -92,12 +95,13 @@ export type MerchantMinAggregateInputType = {
   userId?: true
   businessName?: true
   pickupAddress?: true
-  district?: true
   thana?: true
   balance?: true
   defaultDeliveryCharge?: true
   createdAt?: true
   updatedAt?: true
+  districtId?: true
+  upazilaId?: true
 }
 
 export type MerchantMaxAggregateInputType = {
@@ -105,12 +109,13 @@ export type MerchantMaxAggregateInputType = {
   userId?: true
   businessName?: true
   pickupAddress?: true
-  district?: true
   thana?: true
   balance?: true
   defaultDeliveryCharge?: true
   createdAt?: true
   updatedAt?: true
+  districtId?: true
+  upazilaId?: true
 }
 
 export type MerchantCountAggregateInputType = {
@@ -118,12 +123,13 @@ export type MerchantCountAggregateInputType = {
   userId?: true
   businessName?: true
   pickupAddress?: true
-  district?: true
   thana?: true
   balance?: true
   defaultDeliveryCharge?: true
   createdAt?: true
   updatedAt?: true
+  districtId?: true
+  upazilaId?: true
   _all?: true
 }
 
@@ -218,12 +224,13 @@ export type MerchantGroupByOutputType = {
   userId: string
   businessName: string
   pickupAddress: string
-  district: string | null
   thana: string | null
   balance: runtime.Decimal
   defaultDeliveryCharge: runtime.Decimal | null
   createdAt: Date
   updatedAt: Date
+  districtId: string | null
+  upazilaId: string | null
   _count: MerchantCountAggregateOutputType | null
   _avg: MerchantAvgAggregateOutputType | null
   _sum: MerchantSumAggregateOutputType | null
@@ -254,13 +261,16 @@ export type MerchantWhereInput = {
   userId?: Prisma.StringFilter<"Merchant"> | string
   businessName?: Prisma.StringFilter<"Merchant"> | string
   pickupAddress?: Prisma.StringFilter<"Merchant"> | string
-  district?: Prisma.StringNullableFilter<"Merchant"> | string | null
   thana?: Prisma.StringNullableFilter<"Merchant"> | string | null
   balance?: Prisma.DecimalFilter<"Merchant"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   defaultDeliveryCharge?: Prisma.DecimalNullableFilter<"Merchant"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFilter<"Merchant"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Merchant"> | Date | string
+  districtId?: Prisma.StringNullableFilter<"Merchant"> | string | null
+  upazilaId?: Prisma.StringNullableFilter<"Merchant"> | string | null
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  district?: Prisma.XOR<Prisma.DistrictNullableScalarRelationFilter, Prisma.DistrictWhereInput> | null
+  upazila?: Prisma.XOR<Prisma.UpazilaNullableScalarRelationFilter, Prisma.UpazilaWhereInput> | null
   parcels?: Prisma.ParcelListRelationFilter
   ledgerEntries?: Prisma.MerchantLedgerEntryListRelationFilter
   settlements?: Prisma.SettlementListRelationFilter
@@ -271,13 +281,16 @@ export type MerchantOrderByWithRelationInput = {
   userId?: Prisma.SortOrder
   businessName?: Prisma.SortOrder
   pickupAddress?: Prisma.SortOrder
-  district?: Prisma.SortOrderInput | Prisma.SortOrder
   thana?: Prisma.SortOrderInput | Prisma.SortOrder
   balance?: Prisma.SortOrder
   defaultDeliveryCharge?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  districtId?: Prisma.SortOrderInput | Prisma.SortOrder
+  upazilaId?: Prisma.SortOrderInput | Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
+  district?: Prisma.DistrictOrderByWithRelationInput
+  upazila?: Prisma.UpazilaOrderByWithRelationInput
   parcels?: Prisma.ParcelOrderByRelationAggregateInput
   ledgerEntries?: Prisma.MerchantLedgerEntryOrderByRelationAggregateInput
   settlements?: Prisma.SettlementOrderByRelationAggregateInput
@@ -291,13 +304,16 @@ export type MerchantWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.MerchantWhereInput | Prisma.MerchantWhereInput[]
   businessName?: Prisma.StringFilter<"Merchant"> | string
   pickupAddress?: Prisma.StringFilter<"Merchant"> | string
-  district?: Prisma.StringNullableFilter<"Merchant"> | string | null
   thana?: Prisma.StringNullableFilter<"Merchant"> | string | null
   balance?: Prisma.DecimalFilter<"Merchant"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   defaultDeliveryCharge?: Prisma.DecimalNullableFilter<"Merchant"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFilter<"Merchant"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Merchant"> | Date | string
+  districtId?: Prisma.StringNullableFilter<"Merchant"> | string | null
+  upazilaId?: Prisma.StringNullableFilter<"Merchant"> | string | null
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  district?: Prisma.XOR<Prisma.DistrictNullableScalarRelationFilter, Prisma.DistrictWhereInput> | null
+  upazila?: Prisma.XOR<Prisma.UpazilaNullableScalarRelationFilter, Prisma.UpazilaWhereInput> | null
   parcels?: Prisma.ParcelListRelationFilter
   ledgerEntries?: Prisma.MerchantLedgerEntryListRelationFilter
   settlements?: Prisma.SettlementListRelationFilter
@@ -308,12 +324,13 @@ export type MerchantOrderByWithAggregationInput = {
   userId?: Prisma.SortOrder
   businessName?: Prisma.SortOrder
   pickupAddress?: Prisma.SortOrder
-  district?: Prisma.SortOrderInput | Prisma.SortOrder
   thana?: Prisma.SortOrderInput | Prisma.SortOrder
   balance?: Prisma.SortOrder
   defaultDeliveryCharge?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  districtId?: Prisma.SortOrderInput | Prisma.SortOrder
+  upazilaId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.MerchantCountOrderByAggregateInput
   _avg?: Prisma.MerchantAvgOrderByAggregateInput
   _max?: Prisma.MerchantMaxOrderByAggregateInput
@@ -329,25 +346,27 @@ export type MerchantScalarWhereWithAggregatesInput = {
   userId?: Prisma.StringWithAggregatesFilter<"Merchant"> | string
   businessName?: Prisma.StringWithAggregatesFilter<"Merchant"> | string
   pickupAddress?: Prisma.StringWithAggregatesFilter<"Merchant"> | string
-  district?: Prisma.StringNullableWithAggregatesFilter<"Merchant"> | string | null
   thana?: Prisma.StringNullableWithAggregatesFilter<"Merchant"> | string | null
   balance?: Prisma.DecimalWithAggregatesFilter<"Merchant"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   defaultDeliveryCharge?: Prisma.DecimalNullableWithAggregatesFilter<"Merchant"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Merchant"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Merchant"> | Date | string
+  districtId?: Prisma.StringNullableWithAggregatesFilter<"Merchant"> | string | null
+  upazilaId?: Prisma.StringNullableWithAggregatesFilter<"Merchant"> | string | null
 }
 
 export type MerchantCreateInput = {
   id?: string
   businessName: string
   pickupAddress: string
-  district?: string | null
   thana?: string | null
   balance?: runtime.Decimal | runtime.DecimalJsLike | number | string
   defaultDeliveryCharge?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutMerchantInput
+  district?: Prisma.DistrictCreateNestedOneWithoutMerchantsInput
+  upazila?: Prisma.UpazilaCreateNestedOneWithoutMerchantInput
   parcels?: Prisma.ParcelCreateNestedManyWithoutMerchantInput
   ledgerEntries?: Prisma.MerchantLedgerEntryCreateNestedManyWithoutMerchantInput
   settlements?: Prisma.SettlementCreateNestedManyWithoutMerchantInput
@@ -358,12 +377,13 @@ export type MerchantUncheckedCreateInput = {
   userId: string
   businessName: string
   pickupAddress: string
-  district?: string | null
   thana?: string | null
   balance?: runtime.Decimal | runtime.DecimalJsLike | number | string
   defaultDeliveryCharge?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  districtId?: string | null
+  upazilaId?: string | null
   parcels?: Prisma.ParcelUncheckedCreateNestedManyWithoutMerchantInput
   ledgerEntries?: Prisma.MerchantLedgerEntryUncheckedCreateNestedManyWithoutMerchantInput
   settlements?: Prisma.SettlementUncheckedCreateNestedManyWithoutMerchantInput
@@ -373,13 +393,14 @@ export type MerchantUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   businessName?: Prisma.StringFieldUpdateOperationsInput | string
   pickupAddress?: Prisma.StringFieldUpdateOperationsInput | string
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   thana?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   balance?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   defaultDeliveryCharge?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutMerchantNestedInput
+  district?: Prisma.DistrictUpdateOneWithoutMerchantsNestedInput
+  upazila?: Prisma.UpazilaUpdateOneWithoutMerchantNestedInput
   parcels?: Prisma.ParcelUpdateManyWithoutMerchantNestedInput
   ledgerEntries?: Prisma.MerchantLedgerEntryUpdateManyWithoutMerchantNestedInput
   settlements?: Prisma.SettlementUpdateManyWithoutMerchantNestedInput
@@ -390,12 +411,13 @@ export type MerchantUncheckedUpdateInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   businessName?: Prisma.StringFieldUpdateOperationsInput | string
   pickupAddress?: Prisma.StringFieldUpdateOperationsInput | string
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   thana?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   balance?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   defaultDeliveryCharge?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  districtId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upazilaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parcels?: Prisma.ParcelUncheckedUpdateManyWithoutMerchantNestedInput
   ledgerEntries?: Prisma.MerchantLedgerEntryUncheckedUpdateManyWithoutMerchantNestedInput
   settlements?: Prisma.SettlementUncheckedUpdateManyWithoutMerchantNestedInput
@@ -406,19 +428,19 @@ export type MerchantCreateManyInput = {
   userId: string
   businessName: string
   pickupAddress: string
-  district?: string | null
   thana?: string | null
   balance?: runtime.Decimal | runtime.DecimalJsLike | number | string
   defaultDeliveryCharge?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  districtId?: string | null
+  upazilaId?: string | null
 }
 
 export type MerchantUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   businessName?: Prisma.StringFieldUpdateOperationsInput | string
   pickupAddress?: Prisma.StringFieldUpdateOperationsInput | string
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   thana?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   balance?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   defaultDeliveryCharge?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -431,12 +453,13 @@ export type MerchantUncheckedUpdateManyInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   businessName?: Prisma.StringFieldUpdateOperationsInput | string
   pickupAddress?: Prisma.StringFieldUpdateOperationsInput | string
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   thana?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   balance?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   defaultDeliveryCharge?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  districtId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upazilaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type MerchantCountOrderByAggregateInput = {
@@ -444,12 +467,13 @@ export type MerchantCountOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   businessName?: Prisma.SortOrder
   pickupAddress?: Prisma.SortOrder
-  district?: Prisma.SortOrder
   thana?: Prisma.SortOrder
   balance?: Prisma.SortOrder
   defaultDeliveryCharge?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  districtId?: Prisma.SortOrder
+  upazilaId?: Prisma.SortOrder
 }
 
 export type MerchantAvgOrderByAggregateInput = {
@@ -462,12 +486,13 @@ export type MerchantMaxOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   businessName?: Prisma.SortOrder
   pickupAddress?: Prisma.SortOrder
-  district?: Prisma.SortOrder
   thana?: Prisma.SortOrder
   balance?: Prisma.SortOrder
   defaultDeliveryCharge?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  districtId?: Prisma.SortOrder
+  upazilaId?: Prisma.SortOrder
 }
 
 export type MerchantMinOrderByAggregateInput = {
@@ -475,12 +500,13 @@ export type MerchantMinOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   businessName?: Prisma.SortOrder
   pickupAddress?: Prisma.SortOrder
-  district?: Prisma.SortOrder
   thana?: Prisma.SortOrder
   balance?: Prisma.SortOrder
   defaultDeliveryCharge?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  districtId?: Prisma.SortOrder
+  upazilaId?: Prisma.SortOrder
 }
 
 export type MerchantSumOrderByAggregateInput = {
@@ -496,6 +522,16 @@ export type MerchantScalarRelationFilter = {
 export type MerchantNullableScalarRelationFilter = {
   is?: Prisma.MerchantWhereInput | null
   isNot?: Prisma.MerchantWhereInput | null
+}
+
+export type MerchantListRelationFilter = {
+  every?: Prisma.MerchantWhereInput
+  some?: Prisma.MerchantWhereInput
+  none?: Prisma.MerchantWhereInput
+}
+
+export type MerchantOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type DecimalFieldUpdateOperationsInput = {
@@ -588,17 +624,102 @@ export type MerchantUncheckedUpdateOneWithoutUserNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.MerchantUpdateToOneWithWhereWithoutUserInput, Prisma.MerchantUpdateWithoutUserInput>, Prisma.MerchantUncheckedUpdateWithoutUserInput>
 }
 
+export type MerchantCreateNestedManyWithoutDistrictInput = {
+  create?: Prisma.XOR<Prisma.MerchantCreateWithoutDistrictInput, Prisma.MerchantUncheckedCreateWithoutDistrictInput> | Prisma.MerchantCreateWithoutDistrictInput[] | Prisma.MerchantUncheckedCreateWithoutDistrictInput[]
+  connectOrCreate?: Prisma.MerchantCreateOrConnectWithoutDistrictInput | Prisma.MerchantCreateOrConnectWithoutDistrictInput[]
+  createMany?: Prisma.MerchantCreateManyDistrictInputEnvelope
+  connect?: Prisma.MerchantWhereUniqueInput | Prisma.MerchantWhereUniqueInput[]
+}
+
+export type MerchantUncheckedCreateNestedManyWithoutDistrictInput = {
+  create?: Prisma.XOR<Prisma.MerchantCreateWithoutDistrictInput, Prisma.MerchantUncheckedCreateWithoutDistrictInput> | Prisma.MerchantCreateWithoutDistrictInput[] | Prisma.MerchantUncheckedCreateWithoutDistrictInput[]
+  connectOrCreate?: Prisma.MerchantCreateOrConnectWithoutDistrictInput | Prisma.MerchantCreateOrConnectWithoutDistrictInput[]
+  createMany?: Prisma.MerchantCreateManyDistrictInputEnvelope
+  connect?: Prisma.MerchantWhereUniqueInput | Prisma.MerchantWhereUniqueInput[]
+}
+
+export type MerchantUpdateManyWithoutDistrictNestedInput = {
+  create?: Prisma.XOR<Prisma.MerchantCreateWithoutDistrictInput, Prisma.MerchantUncheckedCreateWithoutDistrictInput> | Prisma.MerchantCreateWithoutDistrictInput[] | Prisma.MerchantUncheckedCreateWithoutDistrictInput[]
+  connectOrCreate?: Prisma.MerchantCreateOrConnectWithoutDistrictInput | Prisma.MerchantCreateOrConnectWithoutDistrictInput[]
+  upsert?: Prisma.MerchantUpsertWithWhereUniqueWithoutDistrictInput | Prisma.MerchantUpsertWithWhereUniqueWithoutDistrictInput[]
+  createMany?: Prisma.MerchantCreateManyDistrictInputEnvelope
+  set?: Prisma.MerchantWhereUniqueInput | Prisma.MerchantWhereUniqueInput[]
+  disconnect?: Prisma.MerchantWhereUniqueInput | Prisma.MerchantWhereUniqueInput[]
+  delete?: Prisma.MerchantWhereUniqueInput | Prisma.MerchantWhereUniqueInput[]
+  connect?: Prisma.MerchantWhereUniqueInput | Prisma.MerchantWhereUniqueInput[]
+  update?: Prisma.MerchantUpdateWithWhereUniqueWithoutDistrictInput | Prisma.MerchantUpdateWithWhereUniqueWithoutDistrictInput[]
+  updateMany?: Prisma.MerchantUpdateManyWithWhereWithoutDistrictInput | Prisma.MerchantUpdateManyWithWhereWithoutDistrictInput[]
+  deleteMany?: Prisma.MerchantScalarWhereInput | Prisma.MerchantScalarWhereInput[]
+}
+
+export type MerchantUncheckedUpdateManyWithoutDistrictNestedInput = {
+  create?: Prisma.XOR<Prisma.MerchantCreateWithoutDistrictInput, Prisma.MerchantUncheckedCreateWithoutDistrictInput> | Prisma.MerchantCreateWithoutDistrictInput[] | Prisma.MerchantUncheckedCreateWithoutDistrictInput[]
+  connectOrCreate?: Prisma.MerchantCreateOrConnectWithoutDistrictInput | Prisma.MerchantCreateOrConnectWithoutDistrictInput[]
+  upsert?: Prisma.MerchantUpsertWithWhereUniqueWithoutDistrictInput | Prisma.MerchantUpsertWithWhereUniqueWithoutDistrictInput[]
+  createMany?: Prisma.MerchantCreateManyDistrictInputEnvelope
+  set?: Prisma.MerchantWhereUniqueInput | Prisma.MerchantWhereUniqueInput[]
+  disconnect?: Prisma.MerchantWhereUniqueInput | Prisma.MerchantWhereUniqueInput[]
+  delete?: Prisma.MerchantWhereUniqueInput | Prisma.MerchantWhereUniqueInput[]
+  connect?: Prisma.MerchantWhereUniqueInput | Prisma.MerchantWhereUniqueInput[]
+  update?: Prisma.MerchantUpdateWithWhereUniqueWithoutDistrictInput | Prisma.MerchantUpdateWithWhereUniqueWithoutDistrictInput[]
+  updateMany?: Prisma.MerchantUpdateManyWithWhereWithoutDistrictInput | Prisma.MerchantUpdateManyWithWhereWithoutDistrictInput[]
+  deleteMany?: Prisma.MerchantScalarWhereInput | Prisma.MerchantScalarWhereInput[]
+}
+
+export type MerchantCreateNestedManyWithoutUpazilaInput = {
+  create?: Prisma.XOR<Prisma.MerchantCreateWithoutUpazilaInput, Prisma.MerchantUncheckedCreateWithoutUpazilaInput> | Prisma.MerchantCreateWithoutUpazilaInput[] | Prisma.MerchantUncheckedCreateWithoutUpazilaInput[]
+  connectOrCreate?: Prisma.MerchantCreateOrConnectWithoutUpazilaInput | Prisma.MerchantCreateOrConnectWithoutUpazilaInput[]
+  createMany?: Prisma.MerchantCreateManyUpazilaInputEnvelope
+  connect?: Prisma.MerchantWhereUniqueInput | Prisma.MerchantWhereUniqueInput[]
+}
+
+export type MerchantUncheckedCreateNestedManyWithoutUpazilaInput = {
+  create?: Prisma.XOR<Prisma.MerchantCreateWithoutUpazilaInput, Prisma.MerchantUncheckedCreateWithoutUpazilaInput> | Prisma.MerchantCreateWithoutUpazilaInput[] | Prisma.MerchantUncheckedCreateWithoutUpazilaInput[]
+  connectOrCreate?: Prisma.MerchantCreateOrConnectWithoutUpazilaInput | Prisma.MerchantCreateOrConnectWithoutUpazilaInput[]
+  createMany?: Prisma.MerchantCreateManyUpazilaInputEnvelope
+  connect?: Prisma.MerchantWhereUniqueInput | Prisma.MerchantWhereUniqueInput[]
+}
+
+export type MerchantUpdateManyWithoutUpazilaNestedInput = {
+  create?: Prisma.XOR<Prisma.MerchantCreateWithoutUpazilaInput, Prisma.MerchantUncheckedCreateWithoutUpazilaInput> | Prisma.MerchantCreateWithoutUpazilaInput[] | Prisma.MerchantUncheckedCreateWithoutUpazilaInput[]
+  connectOrCreate?: Prisma.MerchantCreateOrConnectWithoutUpazilaInput | Prisma.MerchantCreateOrConnectWithoutUpazilaInput[]
+  upsert?: Prisma.MerchantUpsertWithWhereUniqueWithoutUpazilaInput | Prisma.MerchantUpsertWithWhereUniqueWithoutUpazilaInput[]
+  createMany?: Prisma.MerchantCreateManyUpazilaInputEnvelope
+  set?: Prisma.MerchantWhereUniqueInput | Prisma.MerchantWhereUniqueInput[]
+  disconnect?: Prisma.MerchantWhereUniqueInput | Prisma.MerchantWhereUniqueInput[]
+  delete?: Prisma.MerchantWhereUniqueInput | Prisma.MerchantWhereUniqueInput[]
+  connect?: Prisma.MerchantWhereUniqueInput | Prisma.MerchantWhereUniqueInput[]
+  update?: Prisma.MerchantUpdateWithWhereUniqueWithoutUpazilaInput | Prisma.MerchantUpdateWithWhereUniqueWithoutUpazilaInput[]
+  updateMany?: Prisma.MerchantUpdateManyWithWhereWithoutUpazilaInput | Prisma.MerchantUpdateManyWithWhereWithoutUpazilaInput[]
+  deleteMany?: Prisma.MerchantScalarWhereInput | Prisma.MerchantScalarWhereInput[]
+}
+
+export type MerchantUncheckedUpdateManyWithoutUpazilaNestedInput = {
+  create?: Prisma.XOR<Prisma.MerchantCreateWithoutUpazilaInput, Prisma.MerchantUncheckedCreateWithoutUpazilaInput> | Prisma.MerchantCreateWithoutUpazilaInput[] | Prisma.MerchantUncheckedCreateWithoutUpazilaInput[]
+  connectOrCreate?: Prisma.MerchantCreateOrConnectWithoutUpazilaInput | Prisma.MerchantCreateOrConnectWithoutUpazilaInput[]
+  upsert?: Prisma.MerchantUpsertWithWhereUniqueWithoutUpazilaInput | Prisma.MerchantUpsertWithWhereUniqueWithoutUpazilaInput[]
+  createMany?: Prisma.MerchantCreateManyUpazilaInputEnvelope
+  set?: Prisma.MerchantWhereUniqueInput | Prisma.MerchantWhereUniqueInput[]
+  disconnect?: Prisma.MerchantWhereUniqueInput | Prisma.MerchantWhereUniqueInput[]
+  delete?: Prisma.MerchantWhereUniqueInput | Prisma.MerchantWhereUniqueInput[]
+  connect?: Prisma.MerchantWhereUniqueInput | Prisma.MerchantWhereUniqueInput[]
+  update?: Prisma.MerchantUpdateWithWhereUniqueWithoutUpazilaInput | Prisma.MerchantUpdateWithWhereUniqueWithoutUpazilaInput[]
+  updateMany?: Prisma.MerchantUpdateManyWithWhereWithoutUpazilaInput | Prisma.MerchantUpdateManyWithWhereWithoutUpazilaInput[]
+  deleteMany?: Prisma.MerchantScalarWhereInput | Prisma.MerchantScalarWhereInput[]
+}
+
 export type MerchantCreateWithoutLedgerEntriesInput = {
   id?: string
   businessName: string
   pickupAddress: string
-  district?: string | null
   thana?: string | null
   balance?: runtime.Decimal | runtime.DecimalJsLike | number | string
   defaultDeliveryCharge?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutMerchantInput
+  district?: Prisma.DistrictCreateNestedOneWithoutMerchantsInput
+  upazila?: Prisma.UpazilaCreateNestedOneWithoutMerchantInput
   parcels?: Prisma.ParcelCreateNestedManyWithoutMerchantInput
   settlements?: Prisma.SettlementCreateNestedManyWithoutMerchantInput
 }
@@ -608,12 +729,13 @@ export type MerchantUncheckedCreateWithoutLedgerEntriesInput = {
   userId: string
   businessName: string
   pickupAddress: string
-  district?: string | null
   thana?: string | null
   balance?: runtime.Decimal | runtime.DecimalJsLike | number | string
   defaultDeliveryCharge?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  districtId?: string | null
+  upazilaId?: string | null
   parcels?: Prisma.ParcelUncheckedCreateNestedManyWithoutMerchantInput
   settlements?: Prisma.SettlementUncheckedCreateNestedManyWithoutMerchantInput
 }
@@ -638,13 +760,14 @@ export type MerchantUpdateWithoutLedgerEntriesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   businessName?: Prisma.StringFieldUpdateOperationsInput | string
   pickupAddress?: Prisma.StringFieldUpdateOperationsInput | string
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   thana?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   balance?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   defaultDeliveryCharge?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutMerchantNestedInput
+  district?: Prisma.DistrictUpdateOneWithoutMerchantsNestedInput
+  upazila?: Prisma.UpazilaUpdateOneWithoutMerchantNestedInput
   parcels?: Prisma.ParcelUpdateManyWithoutMerchantNestedInput
   settlements?: Prisma.SettlementUpdateManyWithoutMerchantNestedInput
 }
@@ -654,12 +777,13 @@ export type MerchantUncheckedUpdateWithoutLedgerEntriesInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   businessName?: Prisma.StringFieldUpdateOperationsInput | string
   pickupAddress?: Prisma.StringFieldUpdateOperationsInput | string
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   thana?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   balance?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   defaultDeliveryCharge?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  districtId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upazilaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parcels?: Prisma.ParcelUncheckedUpdateManyWithoutMerchantNestedInput
   settlements?: Prisma.SettlementUncheckedUpdateManyWithoutMerchantNestedInput
 }
@@ -668,13 +792,14 @@ export type MerchantCreateWithoutParcelsInput = {
   id?: string
   businessName: string
   pickupAddress: string
-  district?: string | null
   thana?: string | null
   balance?: runtime.Decimal | runtime.DecimalJsLike | number | string
   defaultDeliveryCharge?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutMerchantInput
+  district?: Prisma.DistrictCreateNestedOneWithoutMerchantsInput
+  upazila?: Prisma.UpazilaCreateNestedOneWithoutMerchantInput
   ledgerEntries?: Prisma.MerchantLedgerEntryCreateNestedManyWithoutMerchantInput
   settlements?: Prisma.SettlementCreateNestedManyWithoutMerchantInput
 }
@@ -684,12 +809,13 @@ export type MerchantUncheckedCreateWithoutParcelsInput = {
   userId: string
   businessName: string
   pickupAddress: string
-  district?: string | null
   thana?: string | null
   balance?: runtime.Decimal | runtime.DecimalJsLike | number | string
   defaultDeliveryCharge?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  districtId?: string | null
+  upazilaId?: string | null
   ledgerEntries?: Prisma.MerchantLedgerEntryUncheckedCreateNestedManyWithoutMerchantInput
   settlements?: Prisma.SettlementUncheckedCreateNestedManyWithoutMerchantInput
 }
@@ -714,13 +840,14 @@ export type MerchantUpdateWithoutParcelsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   businessName?: Prisma.StringFieldUpdateOperationsInput | string
   pickupAddress?: Prisma.StringFieldUpdateOperationsInput | string
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   thana?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   balance?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   defaultDeliveryCharge?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutMerchantNestedInput
+  district?: Prisma.DistrictUpdateOneWithoutMerchantsNestedInput
+  upazila?: Prisma.UpazilaUpdateOneWithoutMerchantNestedInput
   ledgerEntries?: Prisma.MerchantLedgerEntryUpdateManyWithoutMerchantNestedInput
   settlements?: Prisma.SettlementUpdateManyWithoutMerchantNestedInput
 }
@@ -730,12 +857,13 @@ export type MerchantUncheckedUpdateWithoutParcelsInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   businessName?: Prisma.StringFieldUpdateOperationsInput | string
   pickupAddress?: Prisma.StringFieldUpdateOperationsInput | string
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   thana?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   balance?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   defaultDeliveryCharge?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  districtId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upazilaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ledgerEntries?: Prisma.MerchantLedgerEntryUncheckedUpdateManyWithoutMerchantNestedInput
   settlements?: Prisma.SettlementUncheckedUpdateManyWithoutMerchantNestedInput
 }
@@ -744,13 +872,14 @@ export type MerchantCreateWithoutSettlementsInput = {
   id?: string
   businessName: string
   pickupAddress: string
-  district?: string | null
   thana?: string | null
   balance?: runtime.Decimal | runtime.DecimalJsLike | number | string
   defaultDeliveryCharge?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutMerchantInput
+  district?: Prisma.DistrictCreateNestedOneWithoutMerchantsInput
+  upazila?: Prisma.UpazilaCreateNestedOneWithoutMerchantInput
   parcels?: Prisma.ParcelCreateNestedManyWithoutMerchantInput
   ledgerEntries?: Prisma.MerchantLedgerEntryCreateNestedManyWithoutMerchantInput
 }
@@ -760,12 +889,13 @@ export type MerchantUncheckedCreateWithoutSettlementsInput = {
   userId: string
   businessName: string
   pickupAddress: string
-  district?: string | null
   thana?: string | null
   balance?: runtime.Decimal | runtime.DecimalJsLike | number | string
   defaultDeliveryCharge?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  districtId?: string | null
+  upazilaId?: string | null
   parcels?: Prisma.ParcelUncheckedCreateNestedManyWithoutMerchantInput
   ledgerEntries?: Prisma.MerchantLedgerEntryUncheckedCreateNestedManyWithoutMerchantInput
 }
@@ -790,13 +920,14 @@ export type MerchantUpdateWithoutSettlementsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   businessName?: Prisma.StringFieldUpdateOperationsInput | string
   pickupAddress?: Prisma.StringFieldUpdateOperationsInput | string
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   thana?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   balance?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   defaultDeliveryCharge?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutMerchantNestedInput
+  district?: Prisma.DistrictUpdateOneWithoutMerchantsNestedInput
+  upazila?: Prisma.UpazilaUpdateOneWithoutMerchantNestedInput
   parcels?: Prisma.ParcelUpdateManyWithoutMerchantNestedInput
   ledgerEntries?: Prisma.MerchantLedgerEntryUpdateManyWithoutMerchantNestedInput
 }
@@ -806,12 +937,13 @@ export type MerchantUncheckedUpdateWithoutSettlementsInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   businessName?: Prisma.StringFieldUpdateOperationsInput | string
   pickupAddress?: Prisma.StringFieldUpdateOperationsInput | string
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   thana?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   balance?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   defaultDeliveryCharge?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  districtId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upazilaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parcels?: Prisma.ParcelUncheckedUpdateManyWithoutMerchantNestedInput
   ledgerEntries?: Prisma.MerchantLedgerEntryUncheckedUpdateManyWithoutMerchantNestedInput
 }
@@ -820,12 +952,13 @@ export type MerchantCreateWithoutUserInput = {
   id?: string
   businessName: string
   pickupAddress: string
-  district?: string | null
   thana?: string | null
   balance?: runtime.Decimal | runtime.DecimalJsLike | number | string
   defaultDeliveryCharge?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  district?: Prisma.DistrictCreateNestedOneWithoutMerchantsInput
+  upazila?: Prisma.UpazilaCreateNestedOneWithoutMerchantInput
   parcels?: Prisma.ParcelCreateNestedManyWithoutMerchantInput
   ledgerEntries?: Prisma.MerchantLedgerEntryCreateNestedManyWithoutMerchantInput
   settlements?: Prisma.SettlementCreateNestedManyWithoutMerchantInput
@@ -835,12 +968,13 @@ export type MerchantUncheckedCreateWithoutUserInput = {
   id?: string
   businessName: string
   pickupAddress: string
-  district?: string | null
   thana?: string | null
   balance?: runtime.Decimal | runtime.DecimalJsLike | number | string
   defaultDeliveryCharge?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  districtId?: string | null
+  upazilaId?: string | null
   parcels?: Prisma.ParcelUncheckedCreateNestedManyWithoutMerchantInput
   ledgerEntries?: Prisma.MerchantLedgerEntryUncheckedCreateNestedManyWithoutMerchantInput
   settlements?: Prisma.SettlementUncheckedCreateNestedManyWithoutMerchantInput
@@ -866,12 +1000,13 @@ export type MerchantUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   businessName?: Prisma.StringFieldUpdateOperationsInput | string
   pickupAddress?: Prisma.StringFieldUpdateOperationsInput | string
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   thana?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   balance?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   defaultDeliveryCharge?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  district?: Prisma.DistrictUpdateOneWithoutMerchantsNestedInput
+  upazila?: Prisma.UpazilaUpdateOneWithoutMerchantNestedInput
   parcels?: Prisma.ParcelUpdateManyWithoutMerchantNestedInput
   ledgerEntries?: Prisma.MerchantLedgerEntryUpdateManyWithoutMerchantNestedInput
   settlements?: Prisma.SettlementUpdateManyWithoutMerchantNestedInput
@@ -881,15 +1016,265 @@ export type MerchantUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   businessName?: Prisma.StringFieldUpdateOperationsInput | string
   pickupAddress?: Prisma.StringFieldUpdateOperationsInput | string
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   thana?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   balance?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   defaultDeliveryCharge?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  districtId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  upazilaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parcels?: Prisma.ParcelUncheckedUpdateManyWithoutMerchantNestedInput
   ledgerEntries?: Prisma.MerchantLedgerEntryUncheckedUpdateManyWithoutMerchantNestedInput
   settlements?: Prisma.SettlementUncheckedUpdateManyWithoutMerchantNestedInput
+}
+
+export type MerchantCreateWithoutDistrictInput = {
+  id?: string
+  businessName: string
+  pickupAddress: string
+  thana?: string | null
+  balance?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultDeliveryCharge?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutMerchantInput
+  upazila?: Prisma.UpazilaCreateNestedOneWithoutMerchantInput
+  parcels?: Prisma.ParcelCreateNestedManyWithoutMerchantInput
+  ledgerEntries?: Prisma.MerchantLedgerEntryCreateNestedManyWithoutMerchantInput
+  settlements?: Prisma.SettlementCreateNestedManyWithoutMerchantInput
+}
+
+export type MerchantUncheckedCreateWithoutDistrictInput = {
+  id?: string
+  userId: string
+  businessName: string
+  pickupAddress: string
+  thana?: string | null
+  balance?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultDeliveryCharge?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  upazilaId?: string | null
+  parcels?: Prisma.ParcelUncheckedCreateNestedManyWithoutMerchantInput
+  ledgerEntries?: Prisma.MerchantLedgerEntryUncheckedCreateNestedManyWithoutMerchantInput
+  settlements?: Prisma.SettlementUncheckedCreateNestedManyWithoutMerchantInput
+}
+
+export type MerchantCreateOrConnectWithoutDistrictInput = {
+  where: Prisma.MerchantWhereUniqueInput
+  create: Prisma.XOR<Prisma.MerchantCreateWithoutDistrictInput, Prisma.MerchantUncheckedCreateWithoutDistrictInput>
+}
+
+export type MerchantCreateManyDistrictInputEnvelope = {
+  data: Prisma.MerchantCreateManyDistrictInput | Prisma.MerchantCreateManyDistrictInput[]
+  skipDuplicates?: boolean
+}
+
+export type MerchantUpsertWithWhereUniqueWithoutDistrictInput = {
+  where: Prisma.MerchantWhereUniqueInput
+  update: Prisma.XOR<Prisma.MerchantUpdateWithoutDistrictInput, Prisma.MerchantUncheckedUpdateWithoutDistrictInput>
+  create: Prisma.XOR<Prisma.MerchantCreateWithoutDistrictInput, Prisma.MerchantUncheckedCreateWithoutDistrictInput>
+}
+
+export type MerchantUpdateWithWhereUniqueWithoutDistrictInput = {
+  where: Prisma.MerchantWhereUniqueInput
+  data: Prisma.XOR<Prisma.MerchantUpdateWithoutDistrictInput, Prisma.MerchantUncheckedUpdateWithoutDistrictInput>
+}
+
+export type MerchantUpdateManyWithWhereWithoutDistrictInput = {
+  where: Prisma.MerchantScalarWhereInput
+  data: Prisma.XOR<Prisma.MerchantUpdateManyMutationInput, Prisma.MerchantUncheckedUpdateManyWithoutDistrictInput>
+}
+
+export type MerchantScalarWhereInput = {
+  AND?: Prisma.MerchantScalarWhereInput | Prisma.MerchantScalarWhereInput[]
+  OR?: Prisma.MerchantScalarWhereInput[]
+  NOT?: Prisma.MerchantScalarWhereInput | Prisma.MerchantScalarWhereInput[]
+  id?: Prisma.StringFilter<"Merchant"> | string
+  userId?: Prisma.StringFilter<"Merchant"> | string
+  businessName?: Prisma.StringFilter<"Merchant"> | string
+  pickupAddress?: Prisma.StringFilter<"Merchant"> | string
+  thana?: Prisma.StringNullableFilter<"Merchant"> | string | null
+  balance?: Prisma.DecimalFilter<"Merchant"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultDeliveryCharge?: Prisma.DecimalNullableFilter<"Merchant"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Prisma.DateTimeFilter<"Merchant"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Merchant"> | Date | string
+  districtId?: Prisma.StringNullableFilter<"Merchant"> | string | null
+  upazilaId?: Prisma.StringNullableFilter<"Merchant"> | string | null
+}
+
+export type MerchantCreateWithoutUpazilaInput = {
+  id?: string
+  businessName: string
+  pickupAddress: string
+  thana?: string | null
+  balance?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultDeliveryCharge?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutMerchantInput
+  district?: Prisma.DistrictCreateNestedOneWithoutMerchantsInput
+  parcels?: Prisma.ParcelCreateNestedManyWithoutMerchantInput
+  ledgerEntries?: Prisma.MerchantLedgerEntryCreateNestedManyWithoutMerchantInput
+  settlements?: Prisma.SettlementCreateNestedManyWithoutMerchantInput
+}
+
+export type MerchantUncheckedCreateWithoutUpazilaInput = {
+  id?: string
+  userId: string
+  businessName: string
+  pickupAddress: string
+  thana?: string | null
+  balance?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultDeliveryCharge?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  districtId?: string | null
+  parcels?: Prisma.ParcelUncheckedCreateNestedManyWithoutMerchantInput
+  ledgerEntries?: Prisma.MerchantLedgerEntryUncheckedCreateNestedManyWithoutMerchantInput
+  settlements?: Prisma.SettlementUncheckedCreateNestedManyWithoutMerchantInput
+}
+
+export type MerchantCreateOrConnectWithoutUpazilaInput = {
+  where: Prisma.MerchantWhereUniqueInput
+  create: Prisma.XOR<Prisma.MerchantCreateWithoutUpazilaInput, Prisma.MerchantUncheckedCreateWithoutUpazilaInput>
+}
+
+export type MerchantCreateManyUpazilaInputEnvelope = {
+  data: Prisma.MerchantCreateManyUpazilaInput | Prisma.MerchantCreateManyUpazilaInput[]
+  skipDuplicates?: boolean
+}
+
+export type MerchantUpsertWithWhereUniqueWithoutUpazilaInput = {
+  where: Prisma.MerchantWhereUniqueInput
+  update: Prisma.XOR<Prisma.MerchantUpdateWithoutUpazilaInput, Prisma.MerchantUncheckedUpdateWithoutUpazilaInput>
+  create: Prisma.XOR<Prisma.MerchantCreateWithoutUpazilaInput, Prisma.MerchantUncheckedCreateWithoutUpazilaInput>
+}
+
+export type MerchantUpdateWithWhereUniqueWithoutUpazilaInput = {
+  where: Prisma.MerchantWhereUniqueInput
+  data: Prisma.XOR<Prisma.MerchantUpdateWithoutUpazilaInput, Prisma.MerchantUncheckedUpdateWithoutUpazilaInput>
+}
+
+export type MerchantUpdateManyWithWhereWithoutUpazilaInput = {
+  where: Prisma.MerchantScalarWhereInput
+  data: Prisma.XOR<Prisma.MerchantUpdateManyMutationInput, Prisma.MerchantUncheckedUpdateManyWithoutUpazilaInput>
+}
+
+export type MerchantCreateManyDistrictInput = {
+  id?: string
+  userId: string
+  businessName: string
+  pickupAddress: string
+  thana?: string | null
+  balance?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultDeliveryCharge?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  upazilaId?: string | null
+}
+
+export type MerchantUpdateWithoutDistrictInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  businessName?: Prisma.StringFieldUpdateOperationsInput | string
+  pickupAddress?: Prisma.StringFieldUpdateOperationsInput | string
+  thana?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  balance?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultDeliveryCharge?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutMerchantNestedInput
+  upazila?: Prisma.UpazilaUpdateOneWithoutMerchantNestedInput
+  parcels?: Prisma.ParcelUpdateManyWithoutMerchantNestedInput
+  ledgerEntries?: Prisma.MerchantLedgerEntryUpdateManyWithoutMerchantNestedInput
+  settlements?: Prisma.SettlementUpdateManyWithoutMerchantNestedInput
+}
+
+export type MerchantUncheckedUpdateWithoutDistrictInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  businessName?: Prisma.StringFieldUpdateOperationsInput | string
+  pickupAddress?: Prisma.StringFieldUpdateOperationsInput | string
+  thana?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  balance?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultDeliveryCharge?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  upazilaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parcels?: Prisma.ParcelUncheckedUpdateManyWithoutMerchantNestedInput
+  ledgerEntries?: Prisma.MerchantLedgerEntryUncheckedUpdateManyWithoutMerchantNestedInput
+  settlements?: Prisma.SettlementUncheckedUpdateManyWithoutMerchantNestedInput
+}
+
+export type MerchantUncheckedUpdateManyWithoutDistrictInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  businessName?: Prisma.StringFieldUpdateOperationsInput | string
+  pickupAddress?: Prisma.StringFieldUpdateOperationsInput | string
+  thana?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  balance?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultDeliveryCharge?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  upazilaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type MerchantCreateManyUpazilaInput = {
+  id?: string
+  userId: string
+  businessName: string
+  pickupAddress: string
+  thana?: string | null
+  balance?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultDeliveryCharge?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  districtId?: string | null
+}
+
+export type MerchantUpdateWithoutUpazilaInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  businessName?: Prisma.StringFieldUpdateOperationsInput | string
+  pickupAddress?: Prisma.StringFieldUpdateOperationsInput | string
+  thana?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  balance?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultDeliveryCharge?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutMerchantNestedInput
+  district?: Prisma.DistrictUpdateOneWithoutMerchantsNestedInput
+  parcels?: Prisma.ParcelUpdateManyWithoutMerchantNestedInput
+  ledgerEntries?: Prisma.MerchantLedgerEntryUpdateManyWithoutMerchantNestedInput
+  settlements?: Prisma.SettlementUpdateManyWithoutMerchantNestedInput
+}
+
+export type MerchantUncheckedUpdateWithoutUpazilaInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  businessName?: Prisma.StringFieldUpdateOperationsInput | string
+  pickupAddress?: Prisma.StringFieldUpdateOperationsInput | string
+  thana?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  balance?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultDeliveryCharge?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  districtId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  parcels?: Prisma.ParcelUncheckedUpdateManyWithoutMerchantNestedInput
+  ledgerEntries?: Prisma.MerchantLedgerEntryUncheckedUpdateManyWithoutMerchantNestedInput
+  settlements?: Prisma.SettlementUncheckedUpdateManyWithoutMerchantNestedInput
+}
+
+export type MerchantUncheckedUpdateManyWithoutUpazilaInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  businessName?: Prisma.StringFieldUpdateOperationsInput | string
+  pickupAddress?: Prisma.StringFieldUpdateOperationsInput | string
+  thana?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  balance?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultDeliveryCharge?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  districtId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -946,13 +1331,16 @@ export type MerchantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   userId?: boolean
   businessName?: boolean
   pickupAddress?: boolean
-  district?: boolean
   thana?: boolean
   balance?: boolean
   defaultDeliveryCharge?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  districtId?: boolean
+  upazilaId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  district?: boolean | Prisma.Merchant$districtArgs<ExtArgs>
+  upazila?: boolean | Prisma.Merchant$upazilaArgs<ExtArgs>
   parcels?: boolean | Prisma.Merchant$parcelsArgs<ExtArgs>
   ledgerEntries?: boolean | Prisma.Merchant$ledgerEntriesArgs<ExtArgs>
   settlements?: boolean | Prisma.Merchant$settlementsArgs<ExtArgs>
@@ -964,13 +1352,16 @@ export type MerchantSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   userId?: boolean
   businessName?: boolean
   pickupAddress?: boolean
-  district?: boolean
   thana?: boolean
   balance?: boolean
   defaultDeliveryCharge?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  districtId?: boolean
+  upazilaId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  district?: boolean | Prisma.Merchant$districtArgs<ExtArgs>
+  upazila?: boolean | Prisma.Merchant$upazilaArgs<ExtArgs>
 }, ExtArgs["result"]["merchant"]>
 
 export type MerchantSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -978,13 +1369,16 @@ export type MerchantSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   userId?: boolean
   businessName?: boolean
   pickupAddress?: boolean
-  district?: boolean
   thana?: boolean
   balance?: boolean
   defaultDeliveryCharge?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  districtId?: boolean
+  upazilaId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  district?: boolean | Prisma.Merchant$districtArgs<ExtArgs>
+  upazila?: boolean | Prisma.Merchant$upazilaArgs<ExtArgs>
 }, ExtArgs["result"]["merchant"]>
 
 export type MerchantSelectScalar = {
@@ -992,17 +1386,20 @@ export type MerchantSelectScalar = {
   userId?: boolean
   businessName?: boolean
   pickupAddress?: boolean
-  district?: boolean
   thana?: boolean
   balance?: boolean
   defaultDeliveryCharge?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  districtId?: boolean
+  upazilaId?: boolean
 }
 
-export type MerchantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "businessName" | "pickupAddress" | "district" | "thana" | "balance" | "defaultDeliveryCharge" | "createdAt" | "updatedAt", ExtArgs["result"]["merchant"]>
+export type MerchantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "businessName" | "pickupAddress" | "thana" | "balance" | "defaultDeliveryCharge" | "createdAt" | "updatedAt" | "districtId" | "upazilaId", ExtArgs["result"]["merchant"]>
 export type MerchantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  district?: boolean | Prisma.Merchant$districtArgs<ExtArgs>
+  upazila?: boolean | Prisma.Merchant$upazilaArgs<ExtArgs>
   parcels?: boolean | Prisma.Merchant$parcelsArgs<ExtArgs>
   ledgerEntries?: boolean | Prisma.Merchant$ledgerEntriesArgs<ExtArgs>
   settlements?: boolean | Prisma.Merchant$settlementsArgs<ExtArgs>
@@ -1010,15 +1407,21 @@ export type MerchantInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
 }
 export type MerchantIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  district?: boolean | Prisma.Merchant$districtArgs<ExtArgs>
+  upazila?: boolean | Prisma.Merchant$upazilaArgs<ExtArgs>
 }
 export type MerchantIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  district?: boolean | Prisma.Merchant$districtArgs<ExtArgs>
+  upazila?: boolean | Prisma.Merchant$upazilaArgs<ExtArgs>
 }
 
 export type $MerchantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Merchant"
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
+    district: Prisma.$DistrictPayload<ExtArgs> | null
+    upazila: Prisma.$UpazilaPayload<ExtArgs> | null
     parcels: Prisma.$ParcelPayload<ExtArgs>[]
     ledgerEntries: Prisma.$MerchantLedgerEntryPayload<ExtArgs>[]
     settlements: Prisma.$SettlementPayload<ExtArgs>[]
@@ -1028,12 +1431,13 @@ export type $MerchantPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     userId: string
     businessName: string
     pickupAddress: string
-    district: string | null
     thana: string | null
     balance: runtime.Decimal
     defaultDeliveryCharge: runtime.Decimal | null
     createdAt: Date
     updatedAt: Date
+    districtId: string | null
+    upazilaId: string | null
   }, ExtArgs["result"]["merchant"]>
   composites: {}
 }
@@ -1429,6 +1833,8 @@ readonly fields: MerchantFieldRefs;
 export interface Prisma__MerchantClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  district<T extends Prisma.Merchant$districtArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Merchant$districtArgs<ExtArgs>>): Prisma.Prisma__DistrictClient<runtime.Types.Result.GetResult<Prisma.$DistrictPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  upazila<T extends Prisma.Merchant$upazilaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Merchant$upazilaArgs<ExtArgs>>): Prisma.Prisma__UpazilaClient<runtime.Types.Result.GetResult<Prisma.$UpazilaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   parcels<T extends Prisma.Merchant$parcelsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Merchant$parcelsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ParcelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   ledgerEntries<T extends Prisma.Merchant$ledgerEntriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Merchant$ledgerEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MerchantLedgerEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   settlements<T extends Prisma.Merchant$settlementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Merchant$settlementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SettlementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -1465,12 +1871,13 @@ export interface MerchantFieldRefs {
   readonly userId: Prisma.FieldRef<"Merchant", 'String'>
   readonly businessName: Prisma.FieldRef<"Merchant", 'String'>
   readonly pickupAddress: Prisma.FieldRef<"Merchant", 'String'>
-  readonly district: Prisma.FieldRef<"Merchant", 'String'>
   readonly thana: Prisma.FieldRef<"Merchant", 'String'>
   readonly balance: Prisma.FieldRef<"Merchant", 'Decimal'>
   readonly defaultDeliveryCharge: Prisma.FieldRef<"Merchant", 'Decimal'>
   readonly createdAt: Prisma.FieldRef<"Merchant", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Merchant", 'DateTime'>
+  readonly districtId: Prisma.FieldRef<"Merchant", 'String'>
+  readonly upazilaId: Prisma.FieldRef<"Merchant", 'String'>
 }
     
 
@@ -1869,6 +2276,44 @@ export type MerchantDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Limit how many Merchants to delete.
    */
   limit?: number
+}
+
+/**
+ * Merchant.district
+ */
+export type Merchant$districtArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the District
+   */
+  select?: Prisma.DistrictSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the District
+   */
+  omit?: Prisma.DistrictOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DistrictInclude<ExtArgs> | null
+  where?: Prisma.DistrictWhereInput
+}
+
+/**
+ * Merchant.upazila
+ */
+export type Merchant$upazilaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Upazila
+   */
+  select?: Prisma.UpazilaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Upazila
+   */
+  omit?: Prisma.UpazilaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UpazilaInclude<ExtArgs> | null
+  where?: Prisma.UpazilaWhereInput
 }
 
 /**

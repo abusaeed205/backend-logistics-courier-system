@@ -36,6 +36,7 @@ model Branch {
 
   // Delivery Zones
   zones DeliveryZone[]
+  
 
   // Parcel relations by role at each Branch
 

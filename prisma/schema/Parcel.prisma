@@ -22,7 +22,7 @@ model Parcel {
   codAmount      Decimal     @default(0) @db.Decimal(10, 2)
   deliveryCharge Decimal     @default(0) @db.Decimal(10, 2)
 
-  currentStatus ParcelStatus @default(PICKUP_REQUESTED)
+  currentStatus ParcelStatus @default(CREATED)
 
   // route endpoints
   originBranchId      String?
